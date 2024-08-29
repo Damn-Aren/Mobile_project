@@ -1,0 +1,22 @@
+.imagen{
+    margin-top: 25px;
+    text-align: center;
+}
+/*..imagen img{
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}*/
+
+.imagen img{
+    border-radius: 25px 25px 25px 25px;
+}
+
+ion-content{
+    --background: rgb(42, 42, 42);
+}
