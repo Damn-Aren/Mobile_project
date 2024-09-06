@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
   },
   {
-    path: '**',
-    loadChildren: () => import('./pages/notfound/notfound.module').then( m => m.NotfoundPageModule)
-  },
-  {
     path: 'home-alum',
     loadChildren: () => import('./pages/home-alum/home-alum.module').then( m => m.HomeAlumPageModule)
   },
@@ -58,7 +54,8 @@ const routes: Routes = [
   {
     path: 'lis-alum',
     loadChildren: () => import('./pages/lis-alum/lis-alum.module').then( m => m.LisAlumPageModule)
-  },  {
+  },
+  {
     path: 'secc',
     loadChildren: () => import('./pages/secc/secc.module').then( m => m.SeccPageModule)
   },
@@ -77,6 +74,10 @@ const routes: Routes = [
   {
     path: 'presidente',
     loadChildren: () => import('./pages/presidente/presidente.module').then( m => m.PresidentePageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./pages/notfound/notfound.module').then( m => m.NotfoundPageModule)
   },
 
 ];
