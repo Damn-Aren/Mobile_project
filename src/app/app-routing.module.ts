@@ -58,7 +58,27 @@ const routes: Routes = [
   {
     path: 'lis-alum',
     loadChildren: () => import('./pages/lis-alum/lis-alum.module').then( m => m.LisAlumPageModule)
+  },  {
+    path: 'secc',
+    loadChildren: () => import('./pages/secc/secc.module').then( m => m.SeccPageModule)
   },
+  {
+    path: 'gen-qrcls',
+    loadChildren: () => import('./pages/gen-qrcls/gen-qrcls.module').then( m => m.GenQRClsPageModule)
+  },
+  {
+    path: 'infrs',
+    loadChildren: () => import('./pages/infrs/infrs.module').then( m => m.InfrsPageModule)
+  },
+  {
+    path: 'espera',
+    loadChildren: () => import('./pages/espera/espera.module').then( m => m.EsperaPageModule)
+  },
+  {
+    path: 'presidente',
+    loadChildren: () => import('./pages/presidente/presidente.module').then( m => m.PresidentePageModule)
+  },
+
 ];
 
 @NgModule({
