@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   }
   validar(){
     if (this.nombre=="Email Martinez" && this.password=="OrangweRabbut77"){
+      console.log("Valores:",this.nombre)
       localStorage.setItem("usuario", this.nombre)
       this.navCtrl.navigateForward(['/home'])
     } else {
