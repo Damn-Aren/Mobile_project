@@ -1,13 +1,17 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>notfound</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true"  class="background">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">notfound</ion-title>
-    </ion-toolbar>
-  </ion-header>
+	<h1>404 not found</h1>
+	<div class="mensaje">
+		<h4>Parece que la página que buscas no existe.</h4>
+		<p>Por favor, comprueba la dirección o vuelve al inicio.</p>
+		<br>
+	</div>
+	<div class="contenedor">
+		<img src="../../../assets/imgs/il_794xN.5751257610_5f6z-removebg.png"alt="" srcst="">
+	</div>
+	<div>
+		<br><br><br><br><br><br>
+		<ion-button expand="block" (click)="splash()">Volver al inicio</ion-button>
+	</div>
+
 </ion-content>

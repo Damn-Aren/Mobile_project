@@ -8,12 +8,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'intro',
+    redirectTo: 'splash',
     pathMatch: 'full'
-  },
-  {
-    path: 'intro',
-    loadChildren: () => import('./pages/intro/intro.module').then( m => m.IntroPageModule)
   },
   {
     path: 'login',
@@ -32,8 +28,36 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pescao/pescao.module').then( m => m.PescaoPageModule)
   },
   {
+    path: 'splash',
+    loadChildren: () => import('./pages/splash/splash.module').then( m => m.SplashPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/notfound/notfound.module').then( m => m.NotfoundPageModule)
+  },
+  {
+    path: 'home-alum',
+    loadChildren: () => import('./pages/home-alum/home-alum.module').then( m => m.HomeAlumPageModule)
+  },
+  {
+    path: 'list-cur-alumn',
+    loadChildren: () => import('./pages/list-cur-alumn/list-cur-alumn.module').then( m => m.ListCurAlumnPageModule)
+  },
+  {
+    path: 'list-cur-docen',
+    loadChildren: () => import('./pages/list-cur-docen/list-cur-docen.module').then( m => m.ListCurDocenPageModule)
+  },
+  {
+    path: 'generar-qr',
+    loadChildren: () => import('./pages/generar-qr/generar-qr.module').then( m => m.GenerarQrPageModule)
+  },
+  {
+    path: 'escanear-qr',
+    loadChildren: () => import('./pages/escanear-qr/escanear-qr.module').then( m => m.EscanearQrPageModule)
+  },
+  {
+    path: 'lis-alum',
+    loadChildren: () => import('./pages/lis-alum/lis-alum.module').then( m => m.LisAlumPageModule)
   },
 ];
 
