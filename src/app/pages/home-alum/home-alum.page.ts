@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-alum',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAlumPage implements OnInit {
 
-  constructor() { }
+  usuario:string=''
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit(): void {
+    var x = localStorage.getItem('usuario')
+    this.usuario=x ??''
   }
-
 }

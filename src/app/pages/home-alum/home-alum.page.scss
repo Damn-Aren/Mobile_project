@@ -1,0 +1,28 @@
+.background{
+	--background: none;
+	background-image: url("../../../assets/imgs/NewCanvas1.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+ion-input{
+    --background: none;
+    --ion-input-color: rgb(255, 255, 255);
+	margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+	background-color: rgb(255, 255, 255);
+    border: 1px solid #ffffff;
+}
+
+label{
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.Boton{
+    background-color: white;
+}
