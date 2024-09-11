@@ -1,15 +1,27 @@
 <ion-header [translucent]="true">
 
-    <ion-title>
+    <ion-header>
       Bienvenido {{usuario}}
-    </ion-title>
+    </ion-header>
 
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <div id="container">
-    <ion-button class="Boton">Lista de Secciones</ion-button>
-    <ion-button class="Boton">Generar QR</ion-button>
-    <ion-button class="Boton">Informes</ion-button>
+  <div class="container" style="text-align: center;margin-top: 100px;padding-left: 2px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-button class="Boton">Lista de Secciones</ion-button>
+        <ion-col></ion-col>
+
+        <ion-col></ion-col>
+        <ion-button class="Boton">Generar QR</ion-button>
+        <ion-col></ion-col>
+
+        <ion-col></ion-col>
+        <ion-button class="Boton">Informes</ion-button>
+        <ion-col></ion-col>
+      </ion-row>
+  </ion-grid>
   </div>
 </ion-content>
