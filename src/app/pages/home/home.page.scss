@@ -4,17 +4,9 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-}
-
-ion-input{
-    --background: none;
-    --ion-input-color: rgb(255, 255, 255);
-	margin-top: 10px;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-	background-color: rgb(255, 255, 255);
-    border: 1px solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 label{
@@ -22,3 +14,28 @@ label{
     font-weight: bold;
     margin-bottom: 5px;
 }
+
+.container{
+    width: 400px;
+    height: 250px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.barra-sup {
+    
+}
+
+.Duoc{
+    margin-left: 150px;
+    width: 112px;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Boton {width: 250%;}

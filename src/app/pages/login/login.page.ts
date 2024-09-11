@@ -34,10 +34,9 @@ export class LoginPage implements OnInit {
   
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Login',
-      subHeader: 'Acceso al sistema',
-      message: 'Usuario o contraseña incorrectos',
-      buttons: ['Action'],
+      header: 'Error de Login',
+      message: 'Usuario o contraseña incorrectos o no existentes',
+      buttons: ['Ok'],
     });
 
     await alert.present();

@@ -1,27 +1,36 @@
 <ion-header [translucent]="true">
-
-    <ion-header>
-      Bienvenido {{usuario}}
-    </ion-header>
-
+  <div class="barra-sup">
+    <h4>HOME</h4>
+    <img src="../../../assets/imgs/Logo_DuocUC.svg.png"alt="" srcst="" class="Duoc">
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <div class="container" style="text-align: center;margin-top: 100px;padding-left: 2px;">
+  <h2>Bienvenido {{usuario}} </h2>
+  <div class="container" style="text-align:center; margin-top: 250px;">
     <ion-grid>
       <ion-row>
         <ion-col></ion-col>
         <ion-button class="Boton">Lista de Secciones</ion-button>
         <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
 
+        <ion-grid>
+          <ion-row>
         <ion-col></ion-col>
         <ion-button class="Boton">Generar QR</ion-button>
         <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
 
+    <ion-grid>
+      <ion-row>
         <ion-col></ion-col>
         <ion-button class="Boton">Informes</ion-button>
         <ion-col></ion-col>
       </ion-row>
   </ion-grid>
+  
   </div>
 </ion-content>
