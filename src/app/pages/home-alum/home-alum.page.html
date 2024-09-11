@@ -1,12 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>home_alum</ion-title>
+    <ion-title>
+      Bienvenido {{usuario}}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
   <div id="container">
-    <ion-button class="Boton">Cursos</ion-button>
-    <ion-button class="Boton">Leer QR</ion-button>
+    <ion-button class="Boton" (click)="Cursos()">Cursos</ion-button>
+    <ion-button class="Boton" (click)="LeerQR()">Leer QR</ion-button>
   </div>
 </ion-content>
