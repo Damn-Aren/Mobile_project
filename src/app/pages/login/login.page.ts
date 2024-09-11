@@ -22,7 +22,13 @@ export class LoginPage implements OnInit {
       localStorage.setItem("usuario", this.nombre)
       this.navCtrl.navigateForward(['/home'])
     } else {
-      this.presentAlert()	
+      if (this.nombre=="Juanito Alcachofa" && this.password=="12345"){
+        console.log("Valores:",this.nombre)
+        localStorage.setItem("usuario", this.nombre)
+        this.navCtrl.navigateForward(['/home-alum'])     
+      } else {
+        this.presentAlert()	
+      }
     }
   }
   
