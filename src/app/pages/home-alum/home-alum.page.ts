@@ -25,3 +25,4 @@ export class HomeAlumPage implements OnInit {
     this.navCtrl.navigateForward(['escanear-qr'])
   }
 }
+

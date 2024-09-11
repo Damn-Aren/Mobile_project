@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-      <ion-title size="large">escanear_qr</ion-title>
-      <div class="contenedor"><img src="../../../assets/imgs/EsQr.png"alt="" srcst=""></div>
+  <div class="contenedor">
+      <div><img src="../../../assets/imgs/EsQr.png"alt="" srcst=""></div>
+      <ion-button (click)="splash()">Volver</ion-button>
+      <ion-button class="Boton" (click)="confir()">X ahora</ion-button>
+  </div>
 </ion-content>

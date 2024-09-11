@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-escanear-qr',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscanearQrPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl:NavController) {}
 
   ngOnInit() {
+  }
+
+  confir(){
+    this.navCtrl.navigateForward(['presidente'])
+  }
+
+  splash(){
+    this.navCtrl.navigateRoot(['/home-alum']);
   }
 
 }

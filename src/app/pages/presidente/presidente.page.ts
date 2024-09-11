@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-presidente',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PresidentePage implements OnInit {
 
-  constructor() { }
-
+  constructor(private navCtrl:NavController) { }
   ngOnInit() {
   }
 
+  splash(){
+    this.navCtrl.navigateRoot(['/escanear-qr']);
+  }
 }
