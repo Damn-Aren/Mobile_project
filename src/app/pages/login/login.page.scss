@@ -27,10 +27,18 @@ label{
     margin-bottom: 5px;
 }
 
-.Duoc{
-    margin-left: 150px;
-    width: 225px;
-    height: 60px;
+.barra-sup {
     display: flex;
-    justify-content: space-around;
-}
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .barra-sup h4 {
+    margin: 0;
+  }
+  
+  .Duoc {
+    width: 100px; /* Tamaño personalizado para la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }

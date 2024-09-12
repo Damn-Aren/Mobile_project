@@ -18,3 +18,19 @@
 	margin-left: 45px;
 	margin-bottom: -60px;
 }
+
+.barra-sup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .barra-sup h4 {
+    margin: 0;
+  }
+  
+  .Duoc {
+    width: 100px; /* Tamaño personalizado para la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+  }
