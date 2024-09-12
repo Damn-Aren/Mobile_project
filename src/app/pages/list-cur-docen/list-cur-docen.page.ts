@@ -17,4 +17,8 @@ export class ListCurDocenPage implements OnInit {
     this.navCtrl.navigateForward(['/ver'])
   }
 
+  Volver(){
+    this.navCtrl.navigateRoot(['/home']);
+  }
+
 }
