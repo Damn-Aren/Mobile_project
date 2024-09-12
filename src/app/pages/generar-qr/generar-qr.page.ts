@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-generar-qr',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GenerarQrPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl:NavController) {}
 
   ngOnInit() {
+  }
+
+  Lista(){
+    this.navCtrl.navigateForward(['lis-alum'])
   }
 
 }

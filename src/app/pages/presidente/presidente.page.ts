@@ -13,6 +13,6 @@ export class PresidentePage implements OnInit {
   }
 
   splash(){
-    this.navCtrl.navigateRoot(['/escanear-qr']);
+    this.navCtrl.navigateRoot(['/espera']);
   }
 }
