@@ -1,14 +1,28 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Bienvenido {{usuario}}
-    </ion-title>
-  </ion-toolbar>
+  <div class="barra-sup">
+    <h4>HOME</h4>
+    <img src="../../../assets/imgs/Logo_DuocUC.svg.png"alt="" srcst="" class="Duoc">
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <div id="contenedor">
-    <ion-button (click)="Cursos()">Cursos</ion-button>
-    <ion-button (click)="LeerQR()">Leer QR</ion-button>
+  <h2>¡Bienvenido {{usuario}}! </h2>
+  <div class="container" style="text-align:center; margin-top: 120px;">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+      <ion-button class="Boton" (click)="Cursos()">Cursos</ion-button>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+    <ion-button class="Boton" (click)="LeerQR()">Leer QR</ion-button>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
