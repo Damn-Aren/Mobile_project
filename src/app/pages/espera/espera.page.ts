@@ -11,5 +11,4 @@ export class EsperaPage implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -16,5 +16,7 @@ export class GenerarQrPage implements OnInit {
   Lista(){
     this.navCtrl.navigateForward(['lis-alum'])
   }
-
+  Volver(){
+  this.navCtrl.navigateRoot(['/home']);
+}
 }

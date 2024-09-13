@@ -16,5 +16,8 @@ export class ListCurAlumnPage implements OnInit {
   splash(){
     this.navCtrl.navigateRoot(['/home-alum']);
   }
-  
+  Volver(){
+    this.navCtrl.navigateRoot(['/home-alum']);
+  }
+
 }

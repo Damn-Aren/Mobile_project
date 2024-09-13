@@ -17,5 +17,8 @@ export class GenQRClsPage implements OnInit {
   LeerQR(){
     this.navCtrl.navigateForward(['generar-qr'])
   }
+  Volver(){
+    this.navCtrl.navigateRoot(['/home']);
+  }
 
 }
