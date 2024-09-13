@@ -11,9 +11,7 @@ export class AgregarPage implements OnInit {
 
   constructor(){ }
   nombre: string;
-  apellido: string;
-  telefono: string;
-  direccion: string;
+  contrasenia: string;
 
   ngOnInit() {
   }
@@ -27,9 +25,7 @@ export class AgregarPage implements OnInit {
     }
     let con=new Contacto()
     con.nombre=this.nombre
-    con.apellido=this.apellido
-    con.direccion=this.direccion
-    con.telefono=this.telefono
+    con.contrasenia=this.contrasenia
     arreglo.push(con)
     localStorage.setItem("contactos",JSON.stringify(arreglo))
     console.log("Grabo")
