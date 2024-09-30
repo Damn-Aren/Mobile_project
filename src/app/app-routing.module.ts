@@ -76,10 +76,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/presidente/presidente.module').then( m => m.PresidentePageModule)
   },
   {
+    path: 'crudalumno',
+    loadChildren: () => import('./pages/crudalumno/crudalumno.module').then( m => m.CrudalumnoPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/notfound/notfound.module').then( m => m.NotfoundPageModule)
   },
-
 ];
 
 @NgModule({
