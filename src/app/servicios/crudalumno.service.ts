@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Alumno } from '../model/Alumnos';
+import { Alumno } from '../model/Alumno';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+
 
 
 @Injectable({
@@ -14,5 +15,18 @@ export class CrudalumnoService {
 
   grabar(alumno:Alumno){
     return this.afs.collection('alumno').add(alumno);
+  }
+
+  listarTodo(): Observable<Alumno[]>{
+    return this.afs.collection<Alumno>('Alumno')
+        .valueChanges({idField:'ID'})
+
+  }
+  eliminar(id:any){
+    return this.afs.collection('alumno').doc(id).delete();
+  }
+  modificar(alumno:Alumno){
+    return this.afs.collection('alumno').doc(alumno.id)
+    .update(alumno);
   }
 }
