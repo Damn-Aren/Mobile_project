@@ -4,8 +4,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-<div style="padding: 30px;" *ngIf="!sw">
+<ion-content [fullscreen]="true" class="background">
+<div style="padding: 30px;" *ngIf=!sw>
   <h2>Guardar alumno</h2>
   <ion-input [(ngModel)]="alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
   <ion-input [(ngModel)]="alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
@@ -13,7 +13,7 @@
   <ion-button expand="block" (click)="grabar()">Guardar</ion-button>
 </div>
 
-<div style="padding: 30px;" *ngIf="sw">
+<div style="padding: 30px;" *ngIf=sw>
   <h2>Modificar alumno</h2>
   <ion-input [(ngModel)]="nuevo_alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
   <ion-input [(ngModel)]="nuevo_alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
@@ -22,14 +22,14 @@
   <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
 </div>
 
-<div style="padding: 30px;">
-  <h2>Listado Alumnos</h2>
+<div style="padding: 30px;" class="container">
+  <h2 class="name">Listado Alumnos</h2>
   <ion-grid>
     <ion-row *ngFor= "let alum of lista_alumnos">
-      <ion-col>{{alum.nombre}} {{alum.apellido}} {{alum.rut}}</ion-col>
+      <ion-col class="name">{{alum.nombre}} {{alum.apellido}} {{alum.rut}}</ion-col>
       <ion-col>
         <ion-button (click)="eliminar(alum.id)">Eliminar</ion-button>
-        <ion-button (click)="eliminar(alum)">Modificar</ion-button>
+        <ion-button (click)="modificar(alum)">Modificar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

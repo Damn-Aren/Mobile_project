@@ -4,8 +4,6 @@ import { Alumno } from '../model/Alumno';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +16,8 @@ export class CrudalumnoService {
   }
 
   listarTodo(): Observable<Alumno[]>{
-    return this.afs.collection<Alumno>('Alumno')
-        .valueChanges({idField:'ID'})
+    return this.afs.collection<Alumno>('alumno')
+        .valueChanges({idField:'id'})
 
   }
   eliminar(id:any){

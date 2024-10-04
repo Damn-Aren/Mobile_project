@@ -53,7 +53,7 @@ export class CrudalumnoPage implements OnInit {
   }
   grabar(){
     this.cp.grabar(this.alumno).then(()=>{
-      alert("grabo");
+      alert("Grabo");
      }).catch((err)=>{
       console.error(err);
     })
