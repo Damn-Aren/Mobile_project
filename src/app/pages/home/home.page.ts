@@ -28,4 +28,7 @@ export class HomePage implements OnInit {
   Informes(){
     this.navCtrl.navigateRoot(['/infrs']);
   }
+  Volver(){
+    this.navCtrl.navigateRoot(['/secc']);
+  }
 }

@@ -24,5 +24,8 @@ export class HomeAlumPage implements OnInit {
   LeerQR(){
     this.navCtrl.navigateForward(['escanear-qr'])
   }
+  Volver(){
+    this.navCtrl.navigateRoot(['/secc']);
+  }
 }
 
