@@ -6,8 +6,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-      <img src="../../../assets/imgs/Rickrolling_QR_code.png"alt="" srcst="">
-      <ion-button (click)="Lista()">Leer QR</ion-button>
+
+  <qr-code [value]="valorQR" 
+        size="300" 
+        errorCorrectionLevel="M" />
+        <ion-input [(ngModel)]="valorQR"></ion-input>
+
+      <ion-button expand="block" (click)="Lista()">Leer QR</ion-button>
 
       <ion-button expand="block" (click)="Volver()">Volver</ion-button>
 </ion-content>
