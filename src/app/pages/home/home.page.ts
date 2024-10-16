@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
+import { CrudApiService } from 'src/app/servicios/crud-api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ export class HomePage implements OnInit {
 
   usuario:string=''
 
-  constructor(private navCtrl:NavController) {}
+  constructor(private navCtrl:NavController, private crud:CrudApiService) {}
 
   ngOnInit(): void {
     var x = localStorage.getItem('usuario')
@@ -30,5 +31,13 @@ export class HomePage implements OnInit {
   }
   Volver(){
     this.navCtrl.navigateRoot(['/secc']);
+  }
+
+  recuperar(){
+    this.crud.getAlumnos().subscribe(
+    (resp)=>{
+      console.log(resp)
+    }
+  )
   }
 }
