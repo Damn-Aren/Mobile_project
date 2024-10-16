@@ -10,6 +10,17 @@
   }
   
   .Duoc {
-    width: 100px; /* Tamaño personalizado para la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100px;
+    height: auto;
+  }
+
+  .background{
+    --background: none;
+    background-image: url("../../../assets/imgs/NewCanvas1.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
   }
