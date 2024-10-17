@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'API',
     'rest_framework',
+    "corsheaders", # cors
 ]
 
 MIDDLEWARE = [
@@ -49,8 +50,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware", # cors
+    "django.middleware.common.CommonMiddleware", # cors
 ]
 
+CORS_ALLOW_ALL_ORIGINS= True # cors
 ROOT_URLCONF = 'movilDJ.urls'
 
 TEMPLATES = [
