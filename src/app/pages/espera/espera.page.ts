@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-espera',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EsperaPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl:NavController) { }
 
-  ngOnInit() {
+  ngOnInit() {    setTimeout(()=>{
+    this.navCtrl.navigateForward(['/home-alum'])
+  },5000)
   }
+
 }

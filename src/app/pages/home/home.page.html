@@ -14,7 +14,7 @@
     <ion-grid>
       <ion-row>
         <ion-col></ion-col>
-        <ion-button class="Boton" (click)="ListaCur()">Lista de Secciones</ion-button>
+        <ion-button name="list-outline" class="Boton" (click)="ListaCur()"><ion-icon name="list-outline"></ion-icon> Lista de Secciones</ion-button>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
@@ -22,7 +22,7 @@
         <ion-grid>
           <ion-row>
         <ion-col></ion-col>
-        <ion-button class="Boton" (click)="GenQR()">Generar QR</ion-button>
+        <ion-button class="Boton" (click)="GenQR()"><ion-icon name="qr-code-outline"></ion-icon> Generar QR</ion-button>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
@@ -30,23 +30,15 @@
     <ion-grid>
       <ion-row>
         <ion-col></ion-col>
-        <ion-button class="Boton" (click)="Informes()">Informes</ion-button>
+        <ion-button class="Boton" (click)="Informes()"><ion-icon name="reader-outline"></ion-icon> Informes</ion-button>
         <ion-col></ion-col>
       </ion-row>
   </ion-grid>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col></ion-col>
-      <ion-button class="Boton" expand="block"(click)="recuperar()">Api</ion-button>
-      <ion-col></ion-col>
-    </ion-row>
-</ion-grid>
-
 <ion-grid>
   <ion-row>
     <ion-col></ion-col>
-    <ion-button class="Boton" expand="block" (click)="Volver()">Cerrar sesion</ion-button>
+    <ion-button class="Boton" expand="block" (click)="Volver()"><ion-icon name="exit-sharp"></ion-icon> Cerrar sesion</ion-button>
     <ion-col></ion-col>
   </ion-row>
 </ion-grid>

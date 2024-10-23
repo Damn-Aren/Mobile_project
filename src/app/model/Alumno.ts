@@ -3,4 +3,5 @@ export interface Alumno{
     nombre: string;
     apellido: string;
     rut: string;
+    id_seccion: string;
 }

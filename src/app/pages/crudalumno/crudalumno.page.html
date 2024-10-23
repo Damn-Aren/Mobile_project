@@ -5,25 +5,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-<div style="padding: 30px;" *ngIf=!sw>
-  <h2>Guardar alumno</h2>
-  <ion-input [(ngModel)]="alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
-  <ion-input [(ngModel)]="alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
-  <ion-input [(ngModel)]="alumno.rut" label = "Rut" placeholder="Ingrese Rut"></ion-input>
-</div>
-
-<div style="padding: 30px;" *ngIf=sw>
-  <h2>Modificar alumno</h2>
-  <ion-input [(ngModel)]="nuevo_alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
-  <ion-input [(ngModel)]="nuevo_alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
-  <ion-input [(ngModel)]="nuevo_alumno.rut" label = "Rut" placeholder="Ingrese Rut"></ion-input>
-</div>
 
 <div style="padding: 30px;" class="container">
   <h2 class="name">Listado Alumnos</h2>
   <ion-grid>
     <ion-row *ngFor= "let alum of lista_alumnos">
-      <ion-col class="name">{{alum.nombre}} {{alum.apellido}} {{alum.rut}}</ion-col>
+      <ion-col class="name">Numero de seccion: {{alum.id_seccion}}</ion-col>
+        <ion-col>Nombre completo: {{alum.nombre}} {{alum.apellido}}</ion-col>
+        <ion-col>Rut: {{alum.rut}}</ion-col>
       <ion-col>
       </ion-col>
     </ion-row>
