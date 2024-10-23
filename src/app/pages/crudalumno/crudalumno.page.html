@@ -10,7 +10,6 @@
   <ion-input [(ngModel)]="alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
   <ion-input [(ngModel)]="alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
   <ion-input [(ngModel)]="alumno.rut" label = "Rut" placeholder="Ingrese Rut"></ion-input>
-  <ion-button expand="block" (click)="grabar()">Guardar</ion-button>
 </div>
 
 <div style="padding: 30px;" *ngIf=sw>
@@ -18,8 +17,6 @@
   <ion-input [(ngModel)]="nuevo_alumno.nombre" label = "Nombre" placeholder="Ingrese Nombre"></ion-input>
   <ion-input [(ngModel)]="nuevo_alumno.apellido" label = "Apellido" placeholder="Ingrese Apellido"></ion-input>
   <ion-input [(ngModel)]="nuevo_alumno.rut" label = "Rut" placeholder="Ingrese Rut"></ion-input>
-  <ion-button expand="block" (click)="actualizar()">Actualizar</ion-button>
-  <ion-button expand="block" (click)="cancelar()">Cancelar</ion-button>
 </div>
 
 <div style="padding: 30px;" class="container">
@@ -28,8 +25,6 @@
     <ion-row *ngFor= "let alum of lista_alumnos">
       <ion-col class="name">{{alum.nombre}} {{alum.apellido}} {{alum.rut}}</ion-col>
       <ion-col>
-        <ion-button (click)="eliminar(alum.id)">Eliminar</ion-button>
-        <ion-button (click)="modificar(alum)">Modificar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

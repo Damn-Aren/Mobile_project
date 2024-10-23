@@ -20,42 +20,9 @@ export class CrudalumnoPage implements OnInit {
   ngOnInit() {
     this.listar()
   }
-  cancelar(){
-    this.sw = false
-  }
-
-  actualizar(){
-    this.cp.modificar(this.nuevo_alumno).then(() => {
-      alert("Actualizado");
-      this.sw=false
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-
-  modificar(alumno:Alumno){
-    this.nuevo_alumno = alumno
-    this.sw=true
-  }
-
-  eliminar(id:any){
-    this.cp.eliminar(id).then(() => {
-      alert("Eliminado");
-    }).catch((err) => {
-      console.log(err)
-  })
-}
-
   listar(){
     this.cp.listarTodo().subscribe(data=>{
       this.lista_alumnos = data
-    })
-  }
-  grabar(){
-    this.cp.grabar(this.alumno).then(()=>{
-      alert("Grabo");
-     }).catch((err)=>{
-      console.error(err);
     })
   }
 }
