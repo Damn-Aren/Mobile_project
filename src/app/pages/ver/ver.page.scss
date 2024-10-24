@@ -9,6 +9,17 @@
   font-style: normal;
 }
 
+.container{
+  width: 400px;
+  height: 70%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .barra-sup {
     display: flex;
     justify-content: space-between;
@@ -21,6 +32,10 @@
   }
   
   .Duoc {
-    width: 100px; /* Tamaño personalizado para la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 100px;
+    height: auto;
   }
+
+  ion-col{
+    border: 1px solid #000000;
+}

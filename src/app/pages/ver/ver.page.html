@@ -9,26 +9,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  
-    <ion-list [inset]="true">
-      <ion-item>
-        <ion-label>Pokémon Yellow</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Mega Man X</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>The Legend of Zelda</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Pac-Man</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Super Mario World</ion-label>
-      </ion-item>
-    </ion-list>
-  
-  
-  <ion-button (click)="Volver()">Volver</ion-button>
+  <div style="padding: 30px;" class="container">
+    <h2 class="name">Listado Alumnos</h2>
+    <ion-grid>
+      <ion-row>
+        <ion-col><b>Seccion</b></ion-col>
+        <ion-col><b>Nombre copmpleto</b></ion-col>
+        <ion-col><b>Rut</b></ion-col>
+      </ion-row>
+      <ion-row *ngFor= "let alum of lista_alumnos">
+        <ion-col class="name">{{alum.id_seccion}}</ion-col>
+          <ion-col>{{alum.nombre}} {{alum.apellido}}</ion-col>
+          <ion-col>{{alum.rut}}</ion-col>
+      </ion-row>
+    </ion-grid>
+    <h1></h1>
+    <ion-button (click)="Volver()">Volver</ion-button>
+  </div>
+
   
 </ion-content>

@@ -11,6 +11,8 @@ export class CrudalumnoService {
 
   constructor(private afs: AngularFirestore) { }
 
+
+  
   listarTodo(): Observable<Alumno[]>{
     return this.afs.collection<Alumno>('asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos')
         .valueChanges({ idField: 'id' });
