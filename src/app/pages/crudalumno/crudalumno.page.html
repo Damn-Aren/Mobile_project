@@ -10,14 +10,14 @@
     <h2 class="name">Listado Alumnos</h2>
     <ion-grid *ngIf="lista_alumnos.length > 0">
       <ion-row>
-        <ion-col><b>Seccion</b></ion-col>
-        <ion-col><b>Nombre completo</b></ion-col>
-        <ion-col><b>Rut</b></ion-col>
+        <ion-col class="WEWE"><b>Seccion</b></ion-col>
+        <ion-col class="WEWE"><b>Nombre completo</b></ion-col>
+        <ion-col class="WEWE"><b>Rut</b></ion-col>
       </ion-row>
       <ion-row *ngFor="let alum of lista_alumnos">
-        <ion-col class="name">{{alum.id_seccion}}</ion-col>
-        <ion-col>{{alum.nombre}} {{alum.apellido}}</ion-col>
-        <ion-col>{{alum.rut}}</ion-col>
+        <ion-col class="wewe">{{alum.id_seccion}}</ion-col>
+        <ion-col class="wewe" >{{alum.nombre}} {{alum.apellido}}</ion-col>
+        <ion-col class="wewe">{{alum.rut}}</ion-col>
       </ion-row>
     </ion-grid>
     <div *ngIf="lista_alumnos.length === 0">

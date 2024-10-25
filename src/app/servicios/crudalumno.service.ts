@@ -15,7 +15,6 @@ export class CrudalumnoService {
     const alumnos02$ = this.afs.collection<Alumno>('asignatura01/UrKySJQflQGmLweDEZsd/Alumnos').valueChanges({ idField: 'id' });
     const alumnos03$ = this.afs.collection<Alumno>('asignatura01/uyEBxZvVl5IeWEj8K73s/Alumnos').valueChanges({ idField: 'id' });
 
-    // Combina todas las colecciones en una sola lista.
     return new Observable<Alumno[]>((observer) => {
       alumnos01$.subscribe(alumnos01 => {
         alumnos02$.subscribe(alumnos02 => {

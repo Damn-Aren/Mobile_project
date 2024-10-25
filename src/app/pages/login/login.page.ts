@@ -41,6 +41,9 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
+
+  cuatrocerocuatro(){
+    this.navCtrl.navigateRoot(['/pepe']);
+  }
+
 }
-  
-  

@@ -15,4 +15,9 @@ export class SplashPage implements OnInit {
       this.navCtrl.navigateForward(['/login'])
     },5000)
   }
+
+  cuatrocerocuatro(){
+    this.navCtrl.navigateRoot(['/pepe']);
+  }
+
 }
