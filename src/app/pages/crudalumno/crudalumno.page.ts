@@ -10,7 +10,7 @@ import { CrudalumnoService } from 'src/app/servicios/crudalumno.service'
 })
 export class CrudalumnoPage implements OnInit {
 
-  constructor(private cp:CrudalumnoService) { }
+  constructor(private cp: CrudalumnoService) {}
 
   alumno:Alumno = {nombre: '', apellido: '', rut:'', id_seccion: ''}
   nuevo_alumno:Alumno = {id:'', nombre: '', apellido: '', rut:'', id_seccion: ''}
