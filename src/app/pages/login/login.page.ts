@@ -17,20 +17,30 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   validar(){
-    if (this.nombre=="Email Martinez" && this.password=="OrangweRabbut77"){
-      console.log("Valores:",this.nombre)
-      localStorage.setItem("usuario", this.nombre)
-      this.navCtrl.navigateForward(['/home'])
+    if (this.nombre == "Email Martinez" && this.password == "OrangweRabbut77") {
+      console.log("Valores:", this.nombre);
+      localStorage.setItem("usuario", this.nombre);
+      this.navCtrl.navigateForward(['/home']);
+    } else if (
+      (this.nombre == "sdomingues@institucion.edu" || 
+       this.nombre == "sherrera@institucion.edu" || 
+       this.nombre == "ichamuyero@institucion.edu" || 
+       this.nombre == "mpantufla@institucion.edu" || 
+       this.nombre == "mlasheron@institucion.edu" || 
+       this.nombre == "fdolphin@institucion.edu" || 
+       this.nombre == "cveergara@institucion.edu" || 
+       this.nombre == "icompleto@institucion.edu" || 
+       this.nombre == "msereno@institucion.edu") 
+      && this.password == "12345"
+    ) {
+      console.log("Valores:", this.nombre);
+      localStorage.setItem("usuario", this.nombre);
+      this.navCtrl.navigateForward(['/home-alum']);
     } else {
-      if (this.nombre=="Juanito Alcachofa" && this.password=="12345"){
-        console.log("Valores:",this.nombre)
-        localStorage.setItem("usuario", this.nombre)
-        this.navCtrl.navigateForward(['/home-alum'])     
-      } else {
-        this.presentAlert()	
-      }
+      this.presentAlert();
     }
   }
+  
   
   async presentAlert() {
     const alert = await this.alertController.create({
