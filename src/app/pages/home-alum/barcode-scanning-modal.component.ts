@@ -23,7 +23,7 @@ import { ToastController } from '@ionic/angular';
   template: `
     <ion-header>
       <ion-toolbar>
-        <ion-title>Scanning</ion-title>
+        <ion-title>Escanner</ion-title>
         <ion-buttons slot="end">
           <ion-button (click)="closeModal()">
             <ion-icon name="close"></ion-icon>
@@ -103,11 +103,13 @@ export class BarcodeScanningModalComponent
   public ngOnInit(): void {
     BarcodeScanner.isTorchAvailable().then((result) => {
       this.isTorchAvailable = result.available;
+      this.mensaje("inicio app")
     });
   }
 
   public ngAfterViewInit(): void {
     setTimeout(() => {
+      this.mensaje("inicio scanner");
       this.startScan();
     }, 500);
   }
@@ -140,6 +142,7 @@ export class BarcodeScanningModalComponent
       duration: 2000,
       position:'bottom'
     })
+    await xx.present()
   }
 
   private async startScan(): Promise<void> {
@@ -202,7 +205,8 @@ export class BarcodeScanningModalComponent
           });
         },
       );
-      await BarcodeScanner.startScan(options);
+      await BarcodeScanner.startScan();
+      this.mensaje("inicio con opciones")      
       void BarcodeScanner.getMinZoomRatio().then((result) => {
         this.minZoomRatio = result.zoomRatio;
       });
