@@ -34,5 +34,8 @@ export class InfrsPage implements OnInit {
       
     }
     this.ObjectPDF = pdfMake.createPdf(dd);
+    this.ObjectPDF.download('Informe_Asistencia');
   }
+
+  
 }
