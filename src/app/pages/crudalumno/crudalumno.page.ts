@@ -12,8 +12,8 @@ export class CrudalumnoPage implements OnInit {
 
   constructor(private cp: CrudalumnoService) {}
 
-  alumno:Alumno = {nombre: '', apellido: '', rut:'', id_seccion: ''}
-  nuevo_alumno:Alumno = {id:'', nombre: '', apellido: '', rut:'', id_seccion: ''}
+  alumno:Alumno = {nombre: '', apellido: '', rut:'', id_seccion: '', asiste: false}
+  nuevo_alumno:Alumno = {id:'', nombre: '', apellido: '', rut:'', id_seccion: '', asiste: false}
   lista_alumnos:Alumno[] = []
   sw:boolean=false 
 

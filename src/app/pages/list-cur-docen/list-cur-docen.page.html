@@ -12,43 +12,21 @@
   
   <ion-card>
     <ion-card-content>
-      <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-icon size="large" name="file-tray-full-outline"></ion-icon>
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-          <ion-button slot="end" class="boton" (click)="PorCur()">Asistencia</ion-button>
-        </ion-item>
-        
-  
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-icon size="large" name="file-tray-full-outline"></ion-icon>
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-          <ion-button slot="end" (click)="PorCur()">Asistencia</ion-button>
-        </ion-item>
-  
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-icon size="large" name="file-tray-full-outline"></ion-icon>
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-          <ion-button slot="end" (click)="PorCur()">Asistencia</ion-button>
-        </ion-item>
-  
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-icon size="large" name="file-tray-full-outline"></ion-icon>
-          </ion-thumbnail>
-          <ion-label>Item</ion-label>
-          <ion-button slot="end" (click)="PorCur()">Asistencia</ion-button>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+      <ion-card-header>
+        <ion-card-title>Card Title</ion-card-title>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div>
+        <h2>Listado asignaturas</h2>
+        <ion-list>
+          <ion-item *ngFor="let asig of Lista_asignaturas">
+            {{asig.Nombre_asignatura}}
+            <ion-button slot="end" class="boton" (click)="PorCur()">Asistencia</ion-button>
+          </ion-item>
+        </ion-list>
+      </div>
+      </ion-card-content>
 
   <ion-button expand="block" (click)="Volver()">Volver</ion-button>
 
-</ion-content>

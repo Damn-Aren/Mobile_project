@@ -20,8 +20,8 @@ export class VerPage implements OnInit {
     this.navCtrl.navigateRoot(['/list-cur-docen']);
   }
 
-  alumno:Alumno = {nombre: '', apellido: '', rut:'', id_seccion: ''}
-  nuevo_alumno:Alumno = {id:'', nombre: '', apellido: '', rut:'', id_seccion: ''}
+  alumno:Alumno = {nombre: '', apellido: '', rut:'', id_seccion: '', asiste: false}
+  nuevo_alumno:Alumno = {id:'', nombre: '', apellido: '', rut:'', id_seccion: '', asiste: false}
   lista_alumnos:Alumno[] = []
   sw:boolean=false 
 

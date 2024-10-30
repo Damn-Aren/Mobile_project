@@ -4,4 +4,5 @@ export interface Alumno{
     apellido: string;
     rut: string;
     id_seccion: string;
+    asiste: boolean;
 }
