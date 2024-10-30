@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore'; 
 import { Observable } from 'rxjs';
-import { asignatura01 } from '../model/asignatura'; // Aquí la importación correcta
+import { asignatura01 } from '../model/asignatura';
 
 @Injectable({
   providedIn: 'root'

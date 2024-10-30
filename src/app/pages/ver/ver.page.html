@@ -11,21 +11,25 @@
 <ion-content [fullscreen]="true" class="background">
   <div style="padding: 30px;" class="container">
     <h2 class="name">Listado Alumnos</h2>
-    <ion-grid>
-      <ion-row>
-        <ion-col><b>Seccion</b></ion-col>
-        <ion-col><b>Nombre copmpleto</b></ion-col>
-        <ion-col><b>Rut</b></ion-col>
+    <ion-grid *ngIf="lista_alumnos.length > 0">
+      <ion-row class="header-row">
+        <ion-col size="3" class="header-col"><b>Seccion</b></ion-col>
+        <ion-col size="3" class="header-col"><b>Nombre completo</b></ion-col>
+        <ion-col size="3" class="header-col"><b>Rut</b></ion-col>
+        <ion-col size="3" class="header-col"><b>Asistencia</b></ion-col>
       </ion-row>
-      <ion-row *ngFor= "let alum of lista_alumnos">
-        <ion-col class="name">{{alum.id_seccion}}</ion-col>
-          <ion-col>{{alum.nombre}} {{alum.apellido}}</ion-col>
-          <ion-col>{{alum.rut}}</ion-col>
+      <ion-row *ngFor="let alum of lista_alumnos">
+        <ion-col size="3" class="content-col">{{alum.id_seccion}}</ion-col>
+        <ion-col size="3" class="content-col">{{alum.nombre}} {{alum.apellido}}</ion-col>
+        <ion-col size="3" class="content-col">{{alum.rut}}</ion-col>
+        <ion-col size="3" class="content-col">{{alum.asiste}}</ion-col>
       </ion-row>
+      <h1></h1>
+      <ion-button (click)="Volver()">Volver</ion-button>
     </ion-grid>
-    <h1></h1>
-    <ion-button (click)="Volver()">Volver</ion-button>
+    <div *ngIf="lista_alumnos.length === 0">
+      No hay alumnos para mostrar.
+    </div>
   </div>
 
-  
 </ion-content>
