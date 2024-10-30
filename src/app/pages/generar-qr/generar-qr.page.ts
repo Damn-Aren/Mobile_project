@@ -21,7 +21,7 @@ export class GenerarQrPage implements OnInit {
     fecha:'10/10/2005 11:30',
   }
   Lista(){
-    this.navCtrl.navigateForward(['lis-alum'])
+    this.navCtrl.navigateForward(['espera'])
   }
   Volver(){
   this.navCtrl.navigateRoot(['/home']);
