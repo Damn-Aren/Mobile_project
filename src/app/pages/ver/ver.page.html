@@ -9,6 +9,47 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
+
+
+  <div>
+    <label for="criterio">Criterio de búsqueda:</label>
+    <select [(ngModel)]="criterio">
+      <option value="nombre">Nombre</option>
+      <option value="apellido">Apellido</option>
+      <option value="rut">RUT</option>
+      <option value="id_seccion">Sección</option>
+    </select>
+  
+    <label for="valor">Valor:</label>
+    <input type="text" [(ngModel)]="valor" placeholder="Ingresa el valor a buscar">
+  
+    <button (click)="buscarAlumnos()">Buscar</button>
+  </div>
+  
+  <div *ngIf="lista_alumnos.length > 0; else noResultados">
+    <h3>Resultados de la búsqueda:</h3>
+    <ul>
+      <li *ngFor="let alum of lista_alumnos">
+        {{ alum.nombre }} {{ alum.apellido }} - RUT: {{ alum.rut }}
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noResultados>
+    <p>No se encontraron resultados o la lista no se ha actualizado.</p>
+  </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
   <div style="padding: 30px;" class="container">
     <h2 class="name">Listado Alumnos</h2>
     <ion-grid *ngIf="lista_alumnos.length > 0">
