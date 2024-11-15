@@ -9,13 +9,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
+<div style="padding: 30px;" class="container">
+  <qr-code [value]="valorQR" size="300" errorCorrectionLevel="M" />
 
-  <qr-code [value]="valorQR" 
-        size="300" 
-        errorCorrectionLevel="M" />
-        <ion-input [(ngModel)]="valorQR"></ion-input>
+      <!-- <ion-input [(ngModel)]="valorQR"></ion-input> -->
 
-      <ion-button expand="block" (click)="Lista()">Leer QR</ion-button>
+      <!-- <ion-button expand="block" color="tertiary" (click)="Lista()">Leer QR</ion-button> -->
 
-      <ion-button expand="block" (click)="Volver()">Volver</ion-button>
+      <div class="timer-container">{{ tiempoTexto }}</div>
+      <ion-progress-bar [value]="progreso"></ion-progress-bar>
+
+      <ion-button expand="block" color="tertiary" (click)="Volver()">Volver</ion-button>
+    </div>
 </ion-content>

@@ -11,13 +11,14 @@
 
 .container{
   width: 400px;
-  height: 740px;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 
 .barra-sup {
@@ -39,3 +40,12 @@
   ion-col{
     border: 1px solid #000000;
 }
+
+  .header-row{
+    background-color: #553F73;
+    color: white;
+  }
+
+  .content-col{
+    background-color: #F3E399;
+  }
