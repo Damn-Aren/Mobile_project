@@ -28,7 +28,7 @@ export class CrudalumnoService {
     });
   }
   buscarAlumnos(criterio: string, valor: string): Observable<Alumno[]> {
-    // Creamos observables para cada colección filtrada
+
     const alumnos01$ = this.afs.collection<Alumno>('asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos', ref =>
       ref.where(criterio, '==', valor)
     ).valueChanges({ idField: 'id' });
