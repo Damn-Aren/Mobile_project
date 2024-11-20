@@ -18,15 +18,16 @@ export class GenerarQrPage implements OnInit {
   constructor(private navCtrl:NavController, private db: AngularFireDatabase) {}
 
   ngOnInit() {
-    //this.valorQR=JSON.stringify(
-      //id_clase: this.claseSeleccionada.id_clase,
-      //fecha: this.claseSeleccionada.fecha,
-      //dia: this.claseSeleccionada.dia,
-    //)
+    this.claseSeleccionada = {
+      id_clase: '4444',
+      fecha: '11/09/2024',
+      dia: 'lunes'
+    };
+    this.cargarClases();
     this.iniciarTemporizador();
     this.cargarClases();
+    this.generarQR();
   }
-
 
   cargarClases() {
     this.db.list('/clases/MMBqzIx4vRYBJSMCp9vT', ref => ref.orderByChild('status').equalTo(false))
@@ -34,6 +35,10 @@ export class GenerarQrPage implements OnInit {
       .subscribe((data: any[]) => {
         this.clases = data;
       });
+  }
+
+  seleccionarClase(clase: any) {
+    this.claseSeleccionada = clase;
   }
 
   generarQR() {
@@ -45,9 +50,10 @@ export class GenerarQrPage implements OnInit {
     this.valorQR = JSON.stringify({
       id_clase: this.claseSeleccionada.id_clase,
       fecha: this.claseSeleccionada.fecha,
-      dia: this.claseSeleccionada.dia,
+      dia: this.claseSeleccionada.dia
     });
 
+    console.log('QR generado:', this.valorQR);
     this.iniciarTemporizador();
   }
 

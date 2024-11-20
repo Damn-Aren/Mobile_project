@@ -45,7 +45,6 @@ export class CrudalumnoService {
       alumnos01$.subscribe(alumnos01 => {
         alumnos02$.subscribe(alumnos02 => {
           alumnos03$.subscribe(alumnos03 => {
-            // Combinamos los arrays de alumnos filtrados
             const todosLosAlumnos = [...alumnos01, ...alumnos02, ...alumnos03];
             observer.next(todosLosAlumnos);
           });

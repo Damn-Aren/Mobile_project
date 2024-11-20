@@ -47,7 +47,6 @@ export class HomeAlumPage implements OnInit {
         },
       });
   
-      // Manejo de resultado
       element.onDidDismiss().then((result) => {
         const barcode: Barcode | undefined = result.data?.barcode;
         if (barcode) {

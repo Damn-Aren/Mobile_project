@@ -33,29 +33,29 @@ export class EscanearQrPage implements OnInit {
     const { barcodes } = await BarcodeScanner.scan();
     if (barcodes.length > 0) {
       const qrData = JSON.parse(barcodes[0].rawValue);
-      this.marcarAsistencia(qrData.id_clase);
+      /*this.marcarAsistencia(qrData.id_clase);
     }
   }
-  async marcarAsistencia(idClase: string) {
+  async marcarAsistencia(id_clase: string) {
     const rutas = [
       'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos',
       'asignatura01/UrKySJQflQGmLweDEZsd/Alumnos',
       'asignatura01/uyEBxZvVl5IeWEj8K73s/Alumnos',
     ];
   for (const ruta of rutas) {
-    this.db.list(ruta, ref => ref.orderByChild('rut').equalTo('EL_RUT_DEL_ALUMNO'))
+    this.db.list(ruta, ref => ref.orderByChild('rut').equalTo(this.rutAlumno))
       .snapshotChanges()
       .subscribe((snapshot: any[]) => {
         if (snapshot.length > 0) {
-          // Marcar presente en la base de datos
           const alumnoKey = snapshot[0].key;
-          this.db.object(`${ruta}/${alumnoKey}`).update({ presente: true });
+          this.db.object(`${ruta}/${alumnoKey}`).update({ asiste: true });
           alert('¡Asistencia marcada correctamente!');
           return;
         }
       });
   }
-}
+}*/
+    }}
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
     return camera === 'granted' || camera === 'limited';
