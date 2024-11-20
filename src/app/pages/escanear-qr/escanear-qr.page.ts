@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from '@ionic/angular';
-
+import { NavController } from '@ionic/angular';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
 
@@ -10,11 +10,11 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./escanear-qr.page.scss'],
 })
 export class EscanearQrPage implements OnInit {
-
   isSupported = false;
   barcodes: Barcode[] = [];
 
   constructor(private navCtrl:NavController,
+    private db: AngularFireDatabase,
     private alertController: AlertController
   ) {}
 
@@ -31,9 +31,31 @@ export class EscanearQrPage implements OnInit {
       return;
     }
     const { barcodes } = await BarcodeScanner.scan();
-    this.barcodes.push(...barcodes);
+    if (barcodes.length > 0) {
+      const qrData = JSON.parse(barcodes[0].rawValue);
+      this.marcarAsistencia(qrData.id_clase);
+    }
   }
-
+  async marcarAsistencia(idClase: string) {
+    const rutas = [
+      'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos',
+      'asignatura01/UrKySJQflQGmLweDEZsd/Alumnos',
+      'asignatura01/uyEBxZvVl5IeWEj8K73s/Alumnos',
+    ];
+  for (const ruta of rutas) {
+    this.db.list(ruta, ref => ref.orderByChild('rut').equalTo('EL_RUT_DEL_ALUMNO'))
+      .snapshotChanges()
+      .subscribe((snapshot: any[]) => {
+        if (snapshot.length > 0) {
+          // Marcar presente en la base de datos
+          const alumnoKey = snapshot[0].key;
+          this.db.object(`${ruta}/${alumnoKey}`).update({ presente: true });
+          alert('¡Asistencia marcada correctamente!');
+          return;
+        }
+      });
+  }
+}
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
     return camera === 'granted' || camera === 'limited';

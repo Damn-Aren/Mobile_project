@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-generar-qr',
@@ -7,52 +8,75 @@ import {NavController} from '@ionic/angular';
   styleUrls: ['./generar-qr.page.scss'],
 })
 export class GenerarQrPage implements OnInit {
+  clases: any[] = [];
+  claseSeleccionada: any;
   tiempoRestante: number = 120;
   progreso: number = 1;
   tiempoTexto: string = '02:00';
+  valorQR: string = '';
 
-  constructor(private navCtrl:NavController) {}
+  constructor(private navCtrl:NavController, private db: AngularFireDatabase) {}
 
   ngOnInit() {
-    this.valorQR=JSON.stringify(this.valorQRJSON)
+    //this.valorQR=JSON.stringify(
+      //id_clase: this.claseSeleccionada.id_clase,
+      //fecha: this.claseSeleccionada.fecha,
+      //dia: this.claseSeleccionada.dia,
+    //)
+    this.iniciarTemporizador();
+    this.cargarClases();
+  }
+
+
+  cargarClases() {
+    this.db.list('/clases/MMBqzIx4vRYBJSMCp9vT', ref => ref.orderByChild('status').equalTo(false))
+      .valueChanges()
+      .subscribe((data: any[]) => {
+        this.clases = data;
+      });
+  }
+
+  generarQR() {
+    if (!this.claseSeleccionada) {
+      alert('Por favor, selecciona una clase.');
+      return;
+    }
+
+    this.valorQR = JSON.stringify({
+      id_clase: this.claseSeleccionada.id_clase,
+      fecha: this.claseSeleccionada.fecha,
+      dia: this.claseSeleccionada.dia,
+    });
+
     this.iniciarTemporizador();
   }
 
-  valorQR:string=''
-  valorQRJSON={
-    codigocurso:'0001',
-    codigoprofesor:'0005',
-    fecha:'10/10/2005 11:30',
+  iniciarTemporizador() {
+    const intervalo = setInterval(() => {
+      if (this.tiempoRestante > 0) {
+        this.tiempoRestante--;
+        this.actualizarTiempoTexto();
+        this.actualizarProgreso();
+      } else {
+        clearInterval(intervalo);
+      }
+    }, 1000);
+  }
+
+  actualizarTiempoTexto() {
+    const minutos = Math.floor(this.tiempoRestante / 60);
+    const segundos = this.tiempoRestante % 60;
+    this.tiempoTexto =
+      (minutos < 10 ? '0' + minutos : minutos) + ':' + (segundos < 10 ? '0' + segundos : segundos);
+  }
+
+  actualizarProgreso() {
+    this.progreso = this.tiempoRestante / 120;
   }
   Lista(){
     this.navCtrl.navigateForward(['espera'])
   }
   Volver(){
   this.navCtrl.navigateRoot(['/home']);
-}
-
-iniciarTemporizador() {
-  const intervalo = setInterval(() => {
-    if (this.tiempoRestante > 0) {
-      this.tiempoRestante--;
-      this.actualizarTiempoTexto();
-      this.actualizarProgreso();
-    } else {
-      clearInterval(intervalo); // Detiene el temporizador cuando llega a 0
-    }
-  }, 1000); // Actualiza cada segundo (1000 ms)
-}
-
-actualizarTiempoTexto() {
-  const minutos = Math.floor(this.tiempoRestante / 60);
-  const segundos = this.tiempoRestante % 60;
-  this.tiempoTexto = 
-    (minutos < 10 ? '0' + minutos : minutos) + 
-    ':' + 
-    (segundos < 10 ? '0' + segundos : segundos);
-}
-
-actualizarProgreso() {
-  this.progreso = this.tiempoRestante / 120;
 }
 }
