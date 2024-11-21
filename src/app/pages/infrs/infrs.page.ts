@@ -233,4 +233,37 @@ export class InfrsPage implements OnInit {
     });
   }
 
+  
+  cambiarAsistencia(rut: string) {
+    const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos';
+  
+    this.crudalumnoService.buscarAlumnos('rut', rut).subscribe(
+      alumnos => {
+        if (alumnos.length > 0) {
+          const alumno = alumnos[0];
+          if (alumno.id) {
+            alumno.asiste = true;
+            this.crudalumnoService.actualizarAsistenciaAlumno(alumno.id, path)
+              .then(() => {
+                console.log(`Asistencia actualizada para el alumno con rut: ${rut}`);
+              })
+              .catch(error => {
+                console.error('Error al actualizar asistencia:', error);
+              });
+          } else {
+            console.error('El alumno no tiene un ID válido.');
+          }
+        } else {
+          console.log(`No se encontró un alumno con el rut: ${rut}`);
+        }
+      },
+      error => {
+        console.error('Error al buscar el alumno:', error);
+      }
+    );
+  }
+  
+  
+
+
 }

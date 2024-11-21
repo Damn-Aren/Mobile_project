@@ -11,6 +11,7 @@ export class CrudalumnoService {
 
   constructor(private afs: AngularFirestore) { }
 
+  //AAAAAAAAAAAAAAAAAAAAAAAAA
   listarTodo(): Observable<Alumno[]> {
     const alumnos01$ = this.afs.collection<Alumno>('asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos').valueChanges({ idField: 'id' });
     const alumnos02$ = this.afs.collection<Alumno>('asignatura01/UrKySJQflQGmLweDEZsd/Alumnos').valueChanges({ idField: 'id' });
@@ -52,4 +53,10 @@ export class CrudalumnoService {
       });
     });
   }
+
+  actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
+    return this.afs.collection(path).doc(id).update({ asiste: true });
+  }
+  
+
 }
