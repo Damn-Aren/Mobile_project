@@ -9,6 +9,9 @@ import { NgZone } from '@angular/core';
 import pdfMake from "pdfmake/build/pdfmake"; 
 import pdfFonts from "pdfmake/build/vfs_fonts";
 
+import { take } from 'rxjs/operators';
+
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
@@ -57,7 +60,7 @@ export class InfrsPage implements OnInit {
   }
 
 
-  descargarPDF() {
+  /*descargarPDF() {
     this.crudalumnoService.listarTodo().subscribe(data => {
       this.lista_alumnos = data;
 
@@ -98,54 +101,55 @@ export class InfrsPage implements OnInit {
       this.ObjectPDF = pdfMake.createPdf(dd);
       this.ObjectPDF.download('Informe_Asistencia.pdf');
     });
-  }
+  }*/
   
   
 
-  descargarPDF001D() {
-    this.crudalumnoService.listarTodo().subscribe(data => {
-      const alumnosSeccion001D = data.filter(alumno => alumno.id_seccion === '001D');
-  
-      const rows = alumnosSeccion001D.map(alumno => [
-        alumno.id_seccion,
-        `${alumno.nombre} ${alumno.apellido}`,
-        alumno.rut,
-        alumno.asiste ? 'Asiste' : 'No asiste'
-      ]);
- 
-      var dd = {
-        content: [
-          {
-            text: 'Informe de Asistencia - Sección 001D',
-            style: 'header'
-          },
-          {
-            layout: 'lightHorizontalLines',
-            table: {
-              headerRows: 1,
-              widths: ['*', '*', '*', '*'], 
-              body: [
-                ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
-                ...rows
-              ]
+    descargarPDF001D() {
+      this.crudalumnoService.listarTodo().pipe(take(1)).subscribe(data => {
+        const alumnosSeccion001D = data.filter(alumno => alumno.id_seccion === '001D');
+    
+        const rows = alumnosSeccion001D.map(alumno => [
+          alumno.id_seccion,
+          `${alumno.nombre} ${alumno.apellido}`,
+          alumno.rut,
+          alumno.asiste ? 'Asiste' : 'No asiste'
+        ]);
+    
+        const dd = {
+          content: [
+            {
+              text: 'Informe de Asistencia - Sección 001D',
+              style: 'header'
+            },
+            {
+              layout: 'lightHorizontalLines',
+              table: {
+                headerRows: 1,
+                widths: ['*', '*', '*', '*'],
+                body: [
+                  ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
+                  ...rows
+                ]
+              }
+            }
+          ],
+          styles: {
+            header: {
+              fontSize: 18,
+              bold: true,
+              margin: [0, 0, 0, 10]
             }
           }
-        ],
-        styles: {
-          header: {
-            fontSize: 18,
-            bold: true,
-            margin: [0, 0, 0, 10]
-          }
-        }
-      };
+        };
+    
+        this.ObjectPDF = pdfMake.createPdf(dd);
+        this.ObjectPDF.download('Informe_Asistencia_001D.pdf');
+      });
+    }
+    
   
-      this.ObjectPDF = pdfMake.createPdf(dd);
-      this.ObjectPDF.download('Informe_Asistencia_001D.pdf');
-    });
-  }
-  
- 
+/* 
   descargarPDF002D() {
     this.crudalumnoService.listarTodo().subscribe(data => {
       const alumnosSeccion002D = data.filter(alumno => alumno.id_seccion === '002D');
@@ -231,13 +235,13 @@ export class InfrsPage implements OnInit {
       this.ObjectPDF = pdfMake.createPdf(dd);
       this.ObjectPDF.download('Informe_Asistencia_003D.pdf');
     });
-  }
+  }*/
 
   
   cambiarAsistencia(rut: string) {
     const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos';
   
-    this.crudalumnoService.buscarAlumnos('rut', rut).subscribe(
+    this.crudalumnoService.buscarAlumnos('rut', rut).pipe(take(1)).subscribe(
       alumnos => {
         if (alumnos.length > 0) {
           const alumno = alumnos[0];
@@ -262,8 +266,4 @@ export class InfrsPage implements OnInit {
       }
     );
   }
-  
-  
-
-
-}
+}  
