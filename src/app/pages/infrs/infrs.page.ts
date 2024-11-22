@@ -22,6 +22,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InfrsPage implements OnInit {
 
+  ListaSecciones: string[] = []; 
+
   ObjectPDF : any;
   criterio: string = '';
   valor: string = '';
@@ -32,9 +34,12 @@ export class InfrsPage implements OnInit {
   lista_alumnos: Alumno[] = [];
   sw: boolean = false;
 
+  Lista_secciones: string[] = [];
+
   constructor(private navCtrl: NavController, private crudalumnoService: CrudalumnoService, private cdr: ChangeDetectorRef, private zone: NgZone) {}
 
   ngOnInit() {
+    this.cargarSecciones();
   }
 
   Volver(){
@@ -59,163 +64,35 @@ export class InfrsPage implements OnInit {
     }
   }
 
-
-  /*descargarPDF() {
-    this.crudalumnoService.listarTodo().subscribe(data => {
-      this.lista_alumnos = data;
-
-      const rows = this.lista_alumnos.map(alumno => [
-        alumno.id_seccion,
-        `${alumno.nombre} ${alumno.apellido}`,
-        alumno.rut,
-        alumno.asiste ? 'Asiste' : 'No asiste'
-      ]);
-  
-      var dd = {
-        content: [
-          {
-            text: 'Informe de Asistencia',
-            style: 'header'
-          },
-          {
-            layout: 'lightHorizontalLines', 
-            table: {
-              headerRows: 1,
-              widths: ['*', '*', '*', '*'], 
-              body: [
-                ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
-                ...rows
-              ]
-            }
-          }
-        ],
-        styles: {
-          header: {
-            fontSize: 18,
-            bold: true,
-            margin: [0, 0, 0, 10]
-          }
-        }
-      };
-  
-      this.ObjectPDF = pdfMake.createPdf(dd);
-      this.ObjectPDF.download('Informe_Asistencia.pdf');
-    });
-  }*/
-  
-  
-
-    descargarPDF001D() {
-      this.crudalumnoService.listarTodo().pipe(take(1)).subscribe(data => {
-        const alumnosSeccion001D = data.filter(alumno => alumno.id_seccion === '001D');
-    
-        const rows = alumnosSeccion001D.map(alumno => [
-          alumno.id_seccion,
-          `${alumno.nombre} ${alumno.apellido}`,
-          alumno.rut,
-          alumno.asiste ? 'Asiste' : 'No asiste'
-        ]);
-    
-        const dd = {
-          content: [
-            {
-              text: 'Informe de Asistencia - Sección 001D',
-              style: 'header'
-            },
-            {
-              layout: 'lightHorizontalLines',
-              table: {
-                headerRows: 1,
-                widths: ['*', '*', '*', '*'],
-                body: [
-                  ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
-                  ...rows
-                ]
-              }
-            }
-          ],
-          styles: {
-            header: {
-              fontSize: 18,
-              bold: true,
-              margin: [0, 0, 0, 10]
-            }
-          }
-        };
-    
-        this.ObjectPDF = pdfMake.createPdf(dd);
-        this.ObjectPDF.download('Informe_Asistencia_001D.pdf');
-      });
-    }
-    
-  
-/* 
-  descargarPDF002D() {
-    this.crudalumnoService.listarTodo().subscribe(data => {
-      const alumnosSeccion002D = data.filter(alumno => alumno.id_seccion === '002D');
-  
-      const rows = alumnosSeccion002D.map(alumno => [
-        alumno.id_seccion,
-        `${alumno.nombre} ${alumno.apellido}`,
-        alumno.rut,
-        alumno.asiste ? 'Asiste' : 'No asiste'
-      ]);
- 
-      var dd = {
-        content: [
-          {
-            text: 'Informe de Asistencia - Sección 001D',
-            style: 'header'
-          },
-          {
-            layout: 'lightHorizontalLines',
-            table: {
-              headerRows: 1,
-              widths: ['*', '*', '*', '*'], 
-              body: [
-                ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
-                ...rows
-              ]
-            }
-          }
-        ],
-        styles: {
-          header: {
-            fontSize: 18,
-            bold: true,
-            margin: [0, 0, 0, 10]
-          }
-        }
-      };
-  
-      this.ObjectPDF = pdfMake.createPdf(dd);
-      this.ObjectPDF.download('Informe_Asistencia_002D.pdf');
+  cargarSecciones() {
+    this.crudalumnoService.listarTodo().pipe(take(1)).subscribe(data => {
+      const secciones = data.map((alumno: any) => alumno.id_seccion);
+      this.ListaSecciones = [...new Set(secciones)].sort();
     });
   }
 
-
-  descargarPDF003D() {
-    this.crudalumnoService.listarTodo().subscribe(data => {
-      const alumnosSeccion003D = data.filter(alumno => alumno.id_seccion === '003D');
+  descargarPDF(idSeccion: string) {
+    this.crudalumnoService.listarTodo().pipe(take(1)).subscribe(data => {
+      const alumnosSeccion = data.filter((alumno: any) => alumno.id_seccion === idSeccion);
   
-      const rows = alumnosSeccion003D.map(alumno => [
+      const rows = alumnosSeccion.map((alumno: any) => [
         alumno.id_seccion,
         `${alumno.nombre} ${alumno.apellido}`,
         alumno.rut,
         alumno.asiste ? 'Asiste' : 'No asiste'
       ]);
- 
-      var dd = {
+  
+      const dd = {
         content: [
           {
-            text: 'Informe de Asistencia - Sección 001D',
+            text: `Informe de Asistencia - Sección ${idSeccion}`,
             style: 'header'
           },
           {
             layout: 'lightHorizontalLines',
             table: {
               headerRows: 1,
-              widths: ['*', '*', '*', '*'], 
+              widths: ['*', '*', '*', '*'],
               body: [
                 ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
                 ...rows
@@ -232,12 +109,9 @@ export class InfrsPage implements OnInit {
         }
       };
   
-      this.ObjectPDF = pdfMake.createPdf(dd);
-      this.ObjectPDF.download('Informe_Asistencia_003D.pdf');
+      pdfMake.createPdf(dd).download(`Informe_Asistencia_${idSeccion}.pdf`);
     });
-  }*/
-
-  
+  }
   cambiarAsistencia(rut: string) {
     const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos';
   
@@ -266,4 +140,4 @@ export class InfrsPage implements OnInit {
       }
     );
   }
-}  
+}
