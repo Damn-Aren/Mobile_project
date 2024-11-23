@@ -33,17 +33,15 @@ export class LoginPage implements OnInit {  alumnos: Alumno[] = [];
   }
 
   validar() {
-    // Login del profesor
     if (this.nombre == "Email Martinez" && this.password == "OrangweRabbut77") {
       sessionStorage.setItem("usuario", this.nombre);
       this.navCtrl.navigateForward(['/home']);
       return;
     }
 
-    // Login de alumnos
     this.crudalumnoService.buscarAlumnoPorCredenciales(this.nombre, this.password).subscribe(alumno => {
       if (alumno) {
-        sessionStorage.setItem("usuario", JSON.stringify(alumno)); // Guarda todo el objeto alumno
+        sessionStorage.setItem("usuario", JSON.stringify(alumno)); 
         this.navCtrl.navigateForward(['/home-alum']);
       } else {
         this.presentAlert();

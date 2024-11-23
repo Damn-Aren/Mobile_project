@@ -19,7 +19,7 @@ export class HomeAlumPage implements OnInit {
 
   isSupported = false;
   barcodes: any[] = [];
-  usuario: any = null; // Objeto alumno logueado
+  usuario: any = null; 
 
   constructor(
     private navCtrl: NavController,
@@ -35,17 +35,16 @@ export class HomeAlumPage implements OnInit {
       this.usuario = JSON.parse(usuarioData);
     }
   
-    // Verificar si el escáner está soportado de forma asíncrona
     this.checkScannerSupport();
   }
   
   async checkScannerSupport() {
     try {
       const result = await BarcodeScanner.isSupported();
-      this.isSupported = result?.supported || false;  // Cambié 'isSupported' por 'supported'
+      this.isSupported = result?.supported || false; 
     } catch (error) {
       console.error('Error verificando soporte del escáner:', error);
-      this.isSupported = false;  // En caso de error, deshabilitar el escáner
+      this.isSupported = false;  
     }
   }
   
@@ -68,7 +67,7 @@ export class HomeAlumPage implements OnInit {
         const barcode: Barcode | undefined = result.data?.barcode;
         if (barcode) {
           this.barcodes = [barcode];
-          this.actualizarAsistencia();  // Aquí es donde se actualizará la asistencia del alumno logueado
+          this.actualizarAsistencia(); 
         }
       });
 
@@ -79,13 +78,12 @@ export class HomeAlumPage implements OnInit {
     }
   }
 
-  // Método para cambiar la asistencia del alumno logueado
+  
   actualizarAsistencia(): void {
     if (this.usuario) {
       const alumnoId = this.usuario.id;
-      const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos'; // Ruta para actualizar la asistencia en Firebase
+      const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos'; 
 
-      // Aquí se actualiza la asistencia del alumno logueado
       this.crudalumnoService.actualizarAsistenciaAlumno(alumnoId, path).then(() => {
         console.log(`Asistencia actualizada para el alumno: ${this.usuario.nombre}`);
         this.mensaje("Asistencia registrada correctamente.");
@@ -115,7 +113,7 @@ export class HomeAlumPage implements OnInit {
         const barcode: Barcode | undefined = result.data?.barcode;
         if (barcode) {
           this.barcodes = [barcode];
-          this.actualizarAsistencia();  // Actualiza la asistencia
+          this.actualizarAsistencia(); 
         }
       });
   
