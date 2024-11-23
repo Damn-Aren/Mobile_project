@@ -28,7 +28,6 @@ listarTodo(): Observable<Alumno[]> {
     })
   );
 }
-  //AAAAAAAAAAAAAAAAAAAAAAAAA
   buscarAlumnos(criterio: string, valor: string): Observable<Alumno[]> {
     return this.afs.collection('asignatura01').get().pipe(
       switchMap(snapshot => {
@@ -55,6 +54,17 @@ listarTodo(): Observable<Alumno[]> {
   actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
     return this.afs.collection(path).doc(id).update({ asiste: true });
   }
-  
+
+  buscarAlumnoPorCredenciales(correo: string, password: string): Observable<Alumno | null> {
+    return this.afs.collectionGroup<Alumno>('Alumnos', ref =>
+        ref.where('correo', '==', correo).where('password', '==', password)
+    ).valueChanges({ idField: 'id' }).pipe(
+        map(alumnos => {
+            console.log("Resultados búsqueda:", alumnos);
+            return alumnos.length > 0 ? alumnos[0] : null;
+        })
+    );
+}
+
 
 }
