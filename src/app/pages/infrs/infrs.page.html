@@ -16,36 +16,15 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <div class="Img">
-              <img src="https://picsum.photos/id/25/200"/>
-            </div>
-          </ion-thumbnail>
-          <ion-label>001D</ion-label>
-          <ion-button slot="end" (click)="descargarPDF001D()">Descargar PDF</ion-button>
+        <ion-item *ngFor="let seccion of ListaSecciones">
+          <div class="Img">
+            <img src="https://picsum.photos/200" />
+          </div>
+          {{ seccion }}
+          <ion-button slot="end" class="boton" (click)="descargarPDF(seccion)">
+            Descargar PDF
+          </ion-button>
         </ion-item>
-  
-        <!--<ion-item>
-          <ion-thumbnail slot="start">
-            <div class="Img">
-              <img src="https://picsum.photos/id/40/200"/>
-            </div>
-          </ion-thumbnail>
-          <ion-label>002D</ion-label>
-          <ion-button slot="end" (click)="descargarPDF002D()">Descargar PDF</ion-button>
-        </ion-item>
-  
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <div class="Img">
-              <img src="https://picsum.photos/id/70/200"/>
-            </div>
-          </ion-thumbnail>
-          <ion-label>003D</ion-label>
-          <ion-button slot="end" (click)="descargarPDF003D()">Descargar PDF</ion-button>
-        </ion-item>-->
-  
       </ion-list>
     </ion-card-content>
   </ion-card>

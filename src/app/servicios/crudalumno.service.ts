@@ -5,12 +5,13 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CrudalumnoService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private firestore: AngularFirestore) { }
 
 
 listarTodo(): Observable<Alumno[]> {
@@ -50,6 +51,14 @@ listarTodo(): Observable<Alumno[]> {
     );
   }
   
+  obtenerSecciones() {
+    return this.firestore.collection('asignatura01').valueChanges().pipe(
+      map((alumnos: any[]) => {
+        const secciones = alumnos.map(alumno => alumno.id_seccion);
+        return Array.from(new Set(secciones));
+      })
+    );
+  }
 
   actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
     return this.afs.collection(path).doc(id).update({ asiste: true });
