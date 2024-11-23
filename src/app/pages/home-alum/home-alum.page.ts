@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 
-import { Barcode, BarcodeScanner,LensFacing } from '@capacitor-mlkit/barcode-scanning';
+import { Barcode, BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { AlertController } from '@ionic/angular';
 import { DialogService } from 'src/app/servicios/dialog.service';
 
 import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 import { ToastController } from '@ionic/angular';
 
+import { CrudalumnoService } from 'src/app/servicios/crudalumno.service';
 
 @Component({
   selector: 'app-home-alum',
@@ -17,25 +18,72 @@ import { ToastController } from '@ionic/angular';
 export class HomeAlumPage implements OnInit {
 
   isSupported = false;
-  barcodes: Barcode[] = [];
+  barcodes: any[] = [];
+  usuario: any = null; // Objeto alumno logueado
 
-  usuario:string=''
-
-  constructor(private navCtrl:NavController,
+  constructor(
+    private navCtrl: NavController,
     private alertController: AlertController,
-    private dialogService:DialogService,
-    private toast:ToastController
+    private dialogService: DialogService,
+    private toast: ToastController,
+    private crudalumnoService: CrudalumnoService
   ) {}
 
   ngOnInit(): void {
-    var x = localStorage.getItem('usuario')
-    this.usuario=x ??'',
-    BarcodeScanner.isSupported().then((result) => {
-      this.isSupported = result.supported;
-    });
+    const usuarioData = sessionStorage.getItem("usuario");
+    if (usuarioData) {
+      this.usuario = JSON.parse(usuarioData);
+    }
   }
   
   public async startScan(): Promise<void> {
+    try {
+      const element = await this.dialogService.showModal({
+        component: BarcodeScanningModalComponent,
+        cssClass: 'barcode-scanning-modal',
+        showBackdrop: false,
+        componentProps: {
+          formats: [],
+          lensFacing: LensFacing.Back,
+        },
+      });
+
+      element.onDidDismiss().then((result) => {
+        const barcode: Barcode | undefined = result.data?.barcode;
+        if (barcode) {
+          this.barcodes = [barcode];
+          this.actualizarAsistencia();  // Aquí es donde se actualizará la asistencia del alumno logueado
+        }
+      });
+
+    } catch (error) {
+      console.error("Error durante el escaneo de código de barras:", error);
+      this.mensaje("Error durante el escaneo");
+      this.mensaje(error);
+    }
+  }
+
+  // Método para cambiar la asistencia del alumno logueado
+  actualizarAsistencia(): void {
+    if (this.usuario) {
+      const alumnoId = this.usuario.id;
+      const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos'; // Ruta para actualizar la asistencia en Firebase
+
+      // Aquí se actualiza la asistencia del alumno logueado
+      this.crudalumnoService.actualizarAsistenciaAlumno(alumnoId, path).then(() => {
+        console.log(`Asistencia actualizada para el alumno: ${this.usuario.nombre}`);
+        this.mensaje("Asistencia registrada correctamente.");
+      }).catch(error => {
+        console.error('Error al actualizar la asistencia:', error);
+        this.mensaje("Error al actualizar la asistencia.");
+      });
+    } else {
+      console.error('No hay un alumno logueado');
+      this.mensaje("No hay un alumno logueado.");
+    }
+  }
+
+  public async scan(): Promise<void> {
     try {
       const element = await this.dialogService.showModal({
         component: BarcodeScanningModalComponent,
@@ -51,24 +99,17 @@ export class HomeAlumPage implements OnInit {
         const barcode: Barcode | undefined = result.data?.barcode;
         if (barcode) {
           this.barcodes = [barcode];
+          this.actualizarAsistencia();  // Actualiza la asistencia
         }
       });
   
     } catch (error) {
       console.error("Error durante el escaneo de código de barras:", error);
-      this.mensaje("error")
-      this.mensaje(error)
+      this.mensaje("Error durante el escaneo");
+      this.mensaje(error);
     }
-  }  
-  async scan(): Promise<void> {
-    const granted = await this.requestPermissions();
-    if (!granted) {
-      this.presentAlert();
-      return;
-    }
-    const { barcodes } = await BarcodeScanner.scan();
-    this.barcodes.push(...barcodes);
   }
+  
 
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
@@ -84,24 +125,24 @@ export class HomeAlumPage implements OnInit {
     await alert.present();
   }
 
-  async mensaje(texto:any): Promise<void> {
+  async mensaje(texto: any): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Permiso denegado',
+      header: 'Mensaje',
       message: texto,
       buttons: ['OK'],
     });
     await alert.present();
   }
 
-  Cursos(){
-    this.navCtrl.navigateForward(['list-cur-alumn'])
+  Cursos() {
+    this.navCtrl.navigateForward(['list-cur-alumn']);
   }
 
-  LeerQR(){
-    this.navCtrl.navigateForward(['escanear-qr'])
+  LeerQR() {
+    this.navCtrl.navigateForward(['escanear-qr']);
   }
-  Volver(){
+
+  Volver() {
     this.navCtrl.navigateRoot(['/secc']);
   }
 }
-

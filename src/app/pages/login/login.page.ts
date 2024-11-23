@@ -4,8 +4,6 @@ import {AlertController, NavController} from '@ionic/angular';
 import { Alumno } from 'src/app/model/Alumno';
 import { CrudalumnoService } from 'src/app/servicios/crudalumno.service';
 
-import { FormsModule } from '@angular/forms';
-
 
 
 @Component({
@@ -37,32 +35,28 @@ export class LoginPage implements OnInit {  alumnos: Alumno[] = [];
   validar() {
     // Login del profesor
     if (this.nombre == "Email Martinez" && this.password == "OrangweRabbut77") {
-        console.log("Valores profesor:", this.nombre);
-        sessionStorage.setItem("usuario", this.nombre);
-        this.navCtrl.navigateForward(['/home']);
-        return; // Termina la función aquí para evitar evaluar el login de alumnos
+      sessionStorage.setItem("usuario", this.nombre);
+      this.navCtrl.navigateForward(['/home']);
+      return;
     }
 
     // Login de alumnos
     this.crudalumnoService.buscarAlumnoPorCredenciales(this.nombre, this.password).subscribe(alumno => {
-        if (alumno) {
-            console.log("Valores alumno:", alumno.nombre);
-            sessionStorage.setItem("usuario", this.nombre); // Guarda el usuario en la sesión
-            this.navCtrl.navigateForward(['/home-alum']);
-        } else {
-            this.presentAlert(); // Muestra alerta si no se encuentra el usuario
-        }
+      if (alumno) {
+        sessionStorage.setItem("usuario", JSON.stringify(alumno)); // Guarda todo el objeto alumno
+        this.navCtrl.navigateForward(['/home-alum']);
+      } else {
+        this.presentAlert();
+      }
     });
-}
-  
-  
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Error de Login',
       message: 'Usuario o contraseña incorrectos o no existentes',
       buttons: ['Ok'],
     });
-
     await alert.present();
   }
 
