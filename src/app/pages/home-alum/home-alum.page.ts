@@ -34,7 +34,23 @@ export class HomeAlumPage implements OnInit {
     if (usuarioData) {
       this.usuario = JSON.parse(usuarioData);
     }
+  
+    // Verificar si el escáner está soportado de forma asíncrona
+    this.checkScannerSupport();
   }
+  
+  async checkScannerSupport() {
+    try {
+      const result = await BarcodeScanner.isSupported();
+      this.isSupported = result?.supported || false;  // Cambié 'isSupported' por 'supported'
+    } catch (error) {
+      console.error('Error verificando soporte del escáner:', error);
+      this.isSupported = false;  // En caso de error, deshabilitar el escáner
+    }
+  }
+  
+  
+  
   
   public async startScan(): Promise<void> {
     try {
