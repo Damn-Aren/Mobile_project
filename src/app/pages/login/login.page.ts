@@ -33,7 +33,7 @@ export class LoginPage implements OnInit {  alumnos: Alumno[] = [];
   }
 
   validar() {
-    if (this.nombre == "Email Martinez" && this.password == "OrangweRabbut77") {
+    if (this.nombre == "Email.Martinez@institucion.edu" && this.password == "OrangweRabbut77") {
       sessionStorage.setItem("usuario", this.nombre);
       this.navCtrl.navigateForward(['/home']);
       return;

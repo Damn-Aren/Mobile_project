@@ -19,7 +19,7 @@
       <ion-list>
         <ion-item *ngFor="let asig of Lista_asignaturas">
           {{asig.Nombre_asignatura}}
-          <ion-button slot="end" class="boton" (click)="LeerQR()">Generar QR</ion-button>
+          <ion-button name="BotonGenerador" slot="end" class="boton" (click)="LeerQR()">Generar QR</ion-button>
         </ion-item>
       </ion-list>
     </div>

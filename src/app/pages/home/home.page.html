@@ -9,12 +9,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <h2>¡Bienvenido {{usuario}}! </h2>
+  <h2>¡Bienvenido Email Martinez!</h2>
+  <h4>Empresario/Profesor</h4>
   <div class="container" style="text-align:center; margin-top: 120px;">
     <ion-grid>
       <ion-row>
         <ion-col></ion-col>
-        <ion-button name="list-outline" class="Boton" (click)="ListaCur()"><ion-icon name="list-outline"></ion-icon> Lista de Secciones</ion-button>
+        <ion-button name="lista_cursos" class="Boton" (click)="ListaCur()"><ion-icon name="list-outline"></ion-icon> Lista de Secciones</ion-button>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>
@@ -22,7 +23,7 @@
         <ion-grid>
           <ion-row>
         <ion-col></ion-col>
-        <ion-button class="Boton" (click)="GenQR()"><ion-icon name="qr-code-outline"></ion-icon> Generar QR</ion-button>
+        <ion-button name="GenerarQR" class="Boton" (click)="GenQR()"><ion-icon name="qr-code-outline"></ion-icon> Generar QR</ion-button>
         <ion-col></ion-col>
       </ion-row>
     </ion-grid>

@@ -12,26 +12,25 @@
 
   <div style="text-align: center;margin-top: 100px;padding-left: 2px;">
   <ion-grid>
-
     <ion-row>
       <ion-col></ion-col>
-      <ion-input label="Nombre usuario " placeholder="Ingrese nombre usuario" label-placement="floating" fill="solid"[(ngModel)]="nombre"></ion-input>
+      <ion-input name="ingreso" label="Nombre usuario " placeholder="Ingrese nombre usuario" label-placement="floating" fill="solid"[(ngModel)]="nombre"></ion-input>
       <ion-col></ion-col>
     </ion-row>
     <ion-row>
       <ion-col></ion-col>
-      <ion-input label="Contraseña" type="password" placeholder="Ingrese Contraseña" label-placement="floating" fill="solid" [(ngModel)]="password"></ion-input>
+      <ion-input name="contraseña" label="Contraseña" type="password" placeholder="Ingrese Contraseña" label-placement="floating" fill="solid" [(ngModel)]="password"></ion-input>
       <ion-col></ion-col>
     </ion-row>
 
     <ion-row>
       <ion-col></ion-col>
-      <ion-button class="Boton" (click)="validar()">Iniciar sesion</ion-button>
+      <ion-button name="iniciar_sesion" (click)="validar()">Iniciar sesion</ion-button>
       <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 
 </div>
 
-  <ion-button fill="clear" size="small" (click)="cuatrocerocuatro()">.</ion-button>
+  <ion-button name="404" fill="clear" size="small" (click)="cuatrocerocuatro()">.</ion-button>
 </ion-content>
