@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <h2>¡Bienvenido {{usuario}}! </h2>
+  <h2 *ngIf="usuario">¡Bienvenido {{ usuario.nombre }}!</h2>
   <h4>Alumno regular</h4>
   <div class="container" style="text-align:center; margin-top: 120px;">
     <ion-grid>

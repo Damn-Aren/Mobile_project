@@ -48,9 +48,6 @@ export class HomeAlumPage implements OnInit {
     }
   }
   
-  
-  
-  
   public async startScan(): Promise<void> {
     try {
       const element = await this.dialogService.showModal({
