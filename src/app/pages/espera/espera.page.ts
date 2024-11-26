@@ -11,8 +11,8 @@ export class EsperaPage implements OnInit {
   constructor(private navCtrl:NavController) { }
 
   ngOnInit() {    setTimeout(()=>{
-    this.navCtrl.navigateForward(['/ver'])
-  },5000)
+    this.navCtrl.navigateForward(['/home-alum']);
+  },10000)
   }
 
 }

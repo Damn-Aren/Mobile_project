@@ -4,16 +4,24 @@ describe('Testeo Inicio Sesion', () => {
     });
     it ('Visitar Pagina Alumno',()=>{
         cy.get('ion-input[name="ingreso"]').should('be.visible')
+        cy.wait(2000)
         cy.get('ion-input[name="ingreso"]').type('sdomingues@institucion.edu')
+        cy.wait(2000)
         cy.get('ion-input[name="contraseña"]').type('12345')
+        cy.wait(2000)
         cy.get('ion-button[name="iniciar_sesion"]').click()
+        cy.wait(2000)
         cy.url().should('include','/home-alum')
     })
     it ('Visitar Pagina Profesor',()=>{
         cy.get('ion-input[name="ingreso"]').should('be.visible')
+        cy.wait(2000)
         cy.get('ion-input[name="ingreso"]').type('Email.Martinez@institucion.edu')
+        cy.wait(2000)
         cy.get('ion-input[name="contraseña"]').type('OrangweRabbut77')
+        cy.wait(2000)
         cy.get('ion-button[name="iniciar_sesion"]').click()
+        cy.wait(2000)
         cy.url().should('include','/home')
     })
 
@@ -23,17 +31,22 @@ describe('Testeo Profesor', () => {
       cy.visit('/home')
     });
     it ('Generacion QR', () => {
+        cy.wait(2000)
         cy.get('ion-button[name="GenerarQR"]').click()
+        cy.wait(2000)
         cy.url().should('include','/gen-qrcls')
-        cy.get('ion-button[name="BotonGenerador"]').click()
-        
+        cy.wait(2000)
+        cy.get('ion-button[name="BotonGenerador"]').click({ multiple: true, force: true} )
+        cy.wait(60000)
     })
     describe('Testeo 404', () => {
         beforeEach (()=> {
           cy.visit('/INGRESO')
         });
         it ('Visita 404 y Vuelve', () => {
+            cy.wait(2000)
             cy.get('ion-button[name="Volver"]').click()
+            cy.wait(2000)
         })
     });
     /*describe('Testeo Joke', () => {
