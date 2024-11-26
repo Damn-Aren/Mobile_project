@@ -64,7 +64,8 @@ export class HomeAlumPage implements OnInit {
         const barcode: Barcode | undefined = result.data?.barcode;
         if (barcode) {
           this.barcodes = [barcode];
-          this.actualizarAsistencia(); 
+          this.actualizarAsistencia();
+          this.navCtrl.navigateRoot(['/espera']);
         }
       });
 
@@ -84,6 +85,7 @@ export class HomeAlumPage implements OnInit {
       this.crudalumnoService.actualizarAsistenciaAlumno(alumnoId, path).then(() => {
         console.log(`Asistencia actualizada para el alumno: ${this.usuario.nombre}`);
         this.mensaje("Asistencia registrada correctamente.");
+
       }).catch(error => {
         console.error('Error al actualizar la asistencia:', error);
         this.mensaje("Error al actualizar la asistencia.");
@@ -156,4 +158,9 @@ export class HomeAlumPage implements OnInit {
   Volver() {
     this.navCtrl.navigateRoot(['/secc']);
   }
+
+  Espera() {
+    this.navCtrl.navigateRoot(['/espera']);
+  }
+
 }
