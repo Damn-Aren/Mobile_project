@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,  ViewChild } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import { asignatura01} from 'src/app/model/asignatura';
 import { CrudasignaturaService } from 'src/app/servicios/crudasignatura.service';
+import type { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-gen-qrcls',
@@ -10,6 +11,8 @@ import { CrudasignaturaService } from 'src/app/servicios/crudasignatura.service'
   styleUrls: ['./gen-qrcls.page.scss'],
 })
 export class GenQRClsPage implements OnInit {
+
+  @ViewChild('modal', { static: true }) modal: IonModal;
 
   constructor(private navCtrl:NavController, private ca:CrudasignaturaService) {}
 
@@ -32,4 +35,7 @@ export class GenQRClsPage implements OnInit {
     this.navCtrl.navigateRoot(['/home']);
   }
 
+  closeModal() {
+    this.modal.dismiss();
+  }
 }

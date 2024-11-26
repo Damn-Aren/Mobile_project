@@ -79,7 +79,8 @@ export class InfrsPage implements OnInit {
         alumno.id_seccion,
         `${alumno.nombre} ${alumno.apellido}`,
         alumno.rut,
-        alumno.asiste ? 'Asiste' : 'No asiste'
+        alumno.asiste ? 'Asiste' : 'No asiste',
+        '10%'
       ]);
   
       const dd = {
@@ -92,9 +93,9 @@ export class InfrsPage implements OnInit {
             layout: 'lightHorizontalLines',
             table: {
               headerRows: 1,
-              widths: ['*', '*', '*', '*'],
+              widths: ['*', '*', '*', '*', '*'],
               body: [
-                ['Sección', 'Nombre completo', 'Rut', 'Asistencia'],
+                ['Sección', 'Nombre completo', 'Rut', 'Asistencia de hoy', 'Porcentaje Asistencia'],
                 ...rows
               ]
             }
@@ -112,6 +113,7 @@ export class InfrsPage implements OnInit {
       pdfMake.createPdf(dd).download(`Informe_Asistencia_${idSeccion}.pdf`);
     });
   }
+
   cambiarAsistencia(rut: string) {
     const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos';
   

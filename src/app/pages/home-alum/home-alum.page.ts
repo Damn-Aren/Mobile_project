@@ -156,4 +156,8 @@ export class HomeAlumPage implements OnInit {
   Volver() {
     this.navCtrl.navigateRoot(['/secc']);
   }
+
+  Irhome(){
+    this.navCtrl.navigateRoot(['/home']);
+  }
 }

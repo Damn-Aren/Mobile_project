@@ -40,4 +40,9 @@ export class HomePage implements OnInit {
     }
   )
   }
+
+  Irhomeal(){
+    this.navCtrl.navigateRoot(['/home-alum']);
+  }
+
 }
