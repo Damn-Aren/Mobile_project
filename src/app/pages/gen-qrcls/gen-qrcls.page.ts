@@ -10,6 +10,7 @@ import type { IonModal } from '@ionic/angular';
   templateUrl: './gen-qrcls.page.html',
   styleUrls: ['./gen-qrcls.page.scss'],
 })
+
 export class GenQRClsPage implements OnInit {
 
   @ViewChild('modal', { static: true }) modal: IonModal;
@@ -30,6 +31,7 @@ export class GenQRClsPage implements OnInit {
   }  
   LeerQR(){
     this.navCtrl.navigateForward(['generar-qr'])
+    this.modal.dismiss();
   }
   Volver(){
     this.navCtrl.navigateRoot(['/home']);
