@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { asignatura01 } from 'src/app/model/asignatura';
 import { CrudasignaturaService } from 'src/app/servicios/crudasignatura.service';
 import { IonModal } from '@ionic/angular';
+import { ClasesService } from 'src/app/servicios/clases.service'; 
 
 @Component({
   selector: 'app-gen-qrcls',
@@ -10,16 +11,26 @@ import { IonModal } from '@ionic/angular';
   styleUrls: ['./gen-qrcls.page.scss'],
 })
 export class GenQRClsPage implements OnInit {
+  listaClases: any[] = [];
 
-  @ViewChild('modal', { static: true }) modal: IonModal;  // Accede al modal
+  @ViewChild('modal', { static: true }) modal: IonModal;
 
-  constructor(private navCtrl: NavController, private ca: CrudasignaturaService) {}
+  constructor( private clasesService: ClasesService, private navCtrl: NavController, private ca: CrudasignaturaService) {}
 
   asignatura: asignatura01 = { Nombre_asignatura: '' };
   Lista_asignaturas: asignatura01[] = [];
 
   ngOnInit() {
-    this.listar(); 
+    this.listar();
+    this.clasesService.obtenerClases().subscribe(
+      clases => {
+        this.listaClases = clases.filter(clase => !clase.activo);
+      },
+      error => {
+        console.error('Error al obtener clases:', error);
+      }
+    );
+
   }
 
   listar() {
@@ -32,7 +43,7 @@ export class GenQRClsPage implements OnInit {
     this.modal.present(); 
   }
 
-  LeerQR() {
+  LeerQR(clase: any) {
     this.navCtrl.navigateForward(['generar-qr']);
     this.modal.dismiss(); 
   }
@@ -44,4 +55,9 @@ export class GenQRClsPage implements OnInit {
   Volver() {
     this.navCtrl.navigateRoot(['/home']);
   }
+  listarClases(){
+    this.clasesService.obtenerClases().subscribe(clases => {
+    this.listaClases = clases;
+  });
+}
 }

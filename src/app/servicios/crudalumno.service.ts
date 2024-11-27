@@ -4,8 +4,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -74,6 +72,4 @@ listarTodo(): Observable<Alumno[]> {
         })
     );
 }
-
-
 }

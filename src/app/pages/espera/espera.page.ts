@@ -12,7 +12,7 @@ export class EsperaPage implements OnInit {
 
   ngOnInit() {    setTimeout(()=>{
     this.navCtrl.navigateForward(['/home-alum']);
-  },10000)
+  },8000)
   }
 
 }

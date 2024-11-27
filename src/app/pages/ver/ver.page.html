@@ -2,10 +2,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  <div class="barra-sup">
+  <!-- <div class="barra-sup">
     <h4>VER</h4>
     <img src="../../../assets/imgs/Logo_DuocUC.svg.png" alt="Logo" class="Duoc">
-  </div>
+  </div> -->
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">  
@@ -19,13 +19,13 @@
       <option value="nombre">Nombre</option>
       <option value="apellido">Apellido</option>
       <option value="rut">RUT</option>
-      <option value="id_seccion">Sección</option>
+      <option name="seccion" value="id_seccion">Sección</option>
     </select>
   
     <label for="valor"> Valor: </label>
-    <input type="text" [(ngModel)]="valor" placeholder="Ingresa la búsqueda">
+    <input name="buscarAlumnos" type="text" [(ngModel)]="valor" placeholder="Ingresa la búsqueda">
   
-    <ion-button (click)="buscarAlumnos()">Buscar</ion-button>
+    <ion-button name="botonBuscar" (click)="buscarAlumnos()">Buscar</ion-button>
 
     <ion-grid *ngIf="lista_alumnos.length > 0">
       <ion-row class="header-row">
