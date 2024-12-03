@@ -20,8 +20,7 @@ export class ClasesService {
           map(listasDeClases =>
             listasDeClases.reduce((todas, clases) => [...todas, ...clases], [])
           ),
-          // Filtrar las clases donde 'activo' es falso
-          map(clases => clases.filter(clase => !clase.activo)), // Cambia 'activo' por el nombre de tu atributo booleano
+          map(clases => clases.filter(clase => !clase.activo)),
           catchError(error => {
             console.error('Error al obtener las clases:', error);
             return of([]);
