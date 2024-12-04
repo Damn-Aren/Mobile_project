@@ -34,13 +34,17 @@ export class EscanearQrPage implements OnInit {
     try {
       const { barcodes } = await BarcodeScanner.scan();
       if (barcodes.length > 0) {
-        const qrData = barcodes[0].rawValue; 
+        const qrData = barcodes[0].rawValue; // Suponiendo que el QR contiene un string como "alumnoId-asignaturaId"
+        
+        // Aquí dividimos el valor del QR para obtener el alumnoId y asignaturaId
+        const [alumnoId, asignaturaId] = qrData.split('-');  // Usamos un guion como delimitador, cámbialo si es necesario
   
-        console.log("Datos escaneados:", qrData);
+        console.log("Datos escaneados:", alumnoId, asignaturaId);
   
-        const alumnoId = qrData;
-        const path = `asignatura01/someAsignaturaId/Alumnos`;
-          
+        // Ahora construimos la ruta de la base de datos con esos valores
+        const path = `asignatura01/${asignaturaId}/Alumnos`;
+  
+        // Actualizamos la asistencia
         this.db.object(`${path}/${alumnoId}`).update({ asiste: true })
           .then(() => {
             console.log("Asistencia actualizada correctamente.");
@@ -53,6 +57,7 @@ export class EscanearQrPage implements OnInit {
       console.error("Error al escanear el código:", error);
     }
   }
+  
   
   
   async requestPermissions(): Promise<boolean> {
