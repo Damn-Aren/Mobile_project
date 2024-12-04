@@ -15,4 +15,7 @@ export class EsperaPage implements OnInit {
   },8000)
   }
 
+  cuatrocerocuatro(){
+    this.navCtrl.navigateRoot(['/home-alum']);
+  }
 }
