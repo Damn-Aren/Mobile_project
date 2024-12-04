@@ -58,9 +58,24 @@ listarTodo(): Observable<Alumno[]> {
     );
   }
 
-  actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
+  /*actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
     return this.afs.collection(path).doc(id).update({ asiste: true });
-  }
+  }*/
+
+    actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
+      const docRef = this.afs.collection(path).doc(id);
+      
+      return docRef.get().toPromise().then(snapshot => {
+        if (snapshot && snapshot.exists) {
+          return docRef.update({ asiste: true });
+        } else {
+          throw new Error(`El documento con ID "${id}" no existe en la ruta "${path}".`);
+        }
+      }).catch(err => {
+        console.error('Error al actualizar asistencia:', err);
+        throw err;
+      });
+    }
 
   buscarAlumnoPorCredenciales(correo: string, password: string): Observable<Alumno | null> {
     return this.afs.collectionGroup<Alumno>('Alumnos', ref =>
