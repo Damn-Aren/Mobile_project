@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
@@ -30,36 +31,32 @@ export class EscanearQrPage implements OnInit {
       this.presentAlert();
       return;
     }
-  
-    try {
-      const { barcodes } = await BarcodeScanner.scan();
-      if (barcodes.length > 0) {
-        const qrData = barcodes[0].rawValue; // Suponiendo que el QR contiene un string como "alumnoId-asignaturaId"
-        
-        // Aquí dividimos el valor del QR para obtener el alumnoId y asignaturaId
-        const [alumnoId, asignaturaId] = qrData.split('-');  // Usamos un guion como delimitador, cámbialo si es necesario
-  
-        console.log("Datos escaneados:", alumnoId, asignaturaId);
-  
-        // Ahora construimos la ruta de la base de datos con esos valores
-        const path = `asignatura01/${asignaturaId}/Alumnos`;
-  
-        // Actualizamos la asistencia
-        this.db.object(`${path}/${alumnoId}`).update({ asiste: true })
-          .then(() => {
-            console.log("Asistencia actualizada correctamente.");
-          })
-          .catch((error) => {
-            console.error("Error al actualizar asistencia:", error);
-          });
-      }
-    } catch (error) {
-      console.error("Error al escanear el código:", error);
+    const { barcodes } = await BarcodeScanner.scan();
+    if (barcodes.length > 0) {
+      const qrData = JSON.parse(barcodes[0].rawValue);
+      /*this.marcarAsistencia(qrData.id_clase);
     }
   }
-  
-  
-  
+  async marcarAsistencia(id_clase: string) {
+    const rutas = [
+      'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos',
+      'asignatura01/UrKySJQflQGmLweDEZsd/Alumnos',
+      'asignatura01/uyEBxZvVl5IeWEj8K73s/Alumnos',
+    ];
+  for (const ruta of rutas) {
+    this.db.list(ruta, ref => ref.orderByChild('rut').equalTo(this.rutAlumno))
+      .snapshotChanges()
+      .subscribe((snapshot: any[]) => {
+        if (snapshot.length > 0) {
+          const alumnoKey = snapshot[0].key;
+          this.db.object(`${ruta}/${alumnoKey}`).update({ asiste: true });
+          alert('¡Asistencia marcada correctamente!');
+          return;
+        }
+      });
+  }
+}*/
+    }}
   async requestPermissions(): Promise<boolean> {
     const { camera } = await BarcodeScanner.requestPermissions();
     return camera === 'granted' || camera === 'limited';
