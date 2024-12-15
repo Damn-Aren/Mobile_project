@@ -10,13 +10,14 @@ import { ToastController } from '@ionic/angular';
 
 import { CrudalumnoService } from 'src/app/servicios/crudalumno.service';
 
+
 @Component({
   selector: 'app-home-alum',
   templateUrl: './home-alum.page.html',
   styleUrls: ['./home-alum.page.scss'],
 })
 export class HomeAlumPage implements OnInit {
-
+  idAsignatura: string;
   isSupported = false;
   barcodes: any[] = [];
   usuario: any = null; 
@@ -26,7 +27,8 @@ export class HomeAlumPage implements OnInit {
     private alertController: AlertController,
     private dialogService: DialogService,
     private toast: ToastController,
-    private crudalumnoService: CrudalumnoService
+    private crudalumnoService: CrudalumnoService,
+    
   ) {}
 
   ngOnInit(): void {
@@ -80,12 +82,11 @@ export class HomeAlumPage implements OnInit {
   actualizarAsistencia(): void {
     if (this.usuario) {
       const alumnoId = this.usuario.id;
-      const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos'; 
-
+      const path = `asignatura01/${this.idAsignatura}/Alumnos`;
+  
       this.crudalumnoService.actualizarAsistenciaAlumno(alumnoId, path).then(() => {
         console.log(`Asistencia actualizada para el alumno: ${this.usuario.nombre}`);
         this.mensaje("Asistencia registrada correctamente.");
-
       }).catch(error => {
         console.error('Error al actualizar la asistencia:', error);
         this.mensaje("Error al actualizar la asistencia.");
@@ -95,6 +96,7 @@ export class HomeAlumPage implements OnInit {
       this.mensaje("No hay un alumno logueado.");
     }
   }
+  
 
   public async scan(): Promise<void> {
     try {

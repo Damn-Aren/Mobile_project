@@ -22,6 +22,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class InfrsPage implements OnInit {
 
+  idAsignatura: string; 
   ListaSecciones: string[] = []; 
 
   ObjectPDF : any;
@@ -36,7 +37,7 @@ export class InfrsPage implements OnInit {
 
   Lista_secciones: string[] = [];
 
-  constructor(private navCtrl: NavController, private crudalumnoService: CrudalumnoService, private cdr: ChangeDetectorRef, private zone: NgZone) {}
+  constructor(private navCtrl: NavController, private crudalumnoService: CrudalumnoService, private cdr: ChangeDetectorRef, private zone: NgZone, ) {}
 
   ngOnInit() {
     this.cargarSecciones();
@@ -115,7 +116,7 @@ export class InfrsPage implements OnInit {
   }
 
   cambiarAsistencia(rut: string) {
-    const path = 'asignatura01/onr02sLjGnrvyYWmZKC4/Alumnos';
+    const path = `asignatura01/${this.idAsignatura}/Alumnos`;
   
     this.crudalumnoService.buscarAlumnos('rut', rut).pipe(take(1)).subscribe(
       alumnos => {
@@ -142,4 +143,4 @@ export class InfrsPage implements OnInit {
       }
     );
   }
-}
+}  

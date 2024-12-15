@@ -3,13 +3,15 @@ import { Alumno } from '../model/Alumno';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, combineLatest, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudalumnoService {
 
-  constructor(private afs: AngularFirestore, private firestore: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private firestore: AngularFirestore, private toastController: ToastController) { }
 
 
 listarTodo(): Observable<Alumno[]> {
@@ -62,20 +64,39 @@ listarTodo(): Observable<Alumno[]> {
     return this.afs.collection(path).doc(id).update({ asiste: true });
   }*/
 
-    actualizarAsistenciaAlumno(id: string, path: string): Promise<void> {
-      const docRef = this.afs.collection(path).doc(id);
+    actualizarAsistenciaAlumno(idAlumno: string, idAsignatura: string): Promise<void> {
+      const path = `asignatura01/${idAsignatura}/Alumnos/${idAlumno}`;
       
+      const docRef = this.afs.doc(path);
+    
       return docRef.get().toPromise().then(snapshot => {
         if (snapshot && snapshot.exists) {
           return docRef.update({ asiste: true });
         } else {
-          throw new Error(`El documento con ID "${id}" no existe en la ruta "${path}".`);
+          throw new Error(`El documento con ID "${idAlumno}" no existe en la ruta "${path}".`);
         }
       }).catch(err => {
         console.error('Error al actualizar asistencia:', err);
+    
+        // Crear mensaje para el toast con tipo de error
+        const mensaje = err && typeof err === 'object' && 'message' in err
+          ? `Mensaje: ${(err as any).message || 'Sin mensaje'}`
+          : String(err);
+        this.mostrarToast(`Error al actualizar:\n${mensaje}`);
         throw err;
       });
+    }  
+    
+    private async mostrarToast(mensaje: string): Promise<void> {
+      const toast = await this.toastController.create({
+        message: mensaje,
+        duration: 10000,
+        position: 'top',
+        color: 'danger',
+      });
+      await toast.present();
     }
+  
 
   buscarAlumnoPorCredenciales(correo: string, password: string): Observable<Alumno | null> {
     return this.afs.collectionGroup<Alumno>('Alumnos', ref =>

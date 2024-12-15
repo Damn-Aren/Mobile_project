@@ -19,7 +19,6 @@ export class AppComponent {
         return;
       }
 
-      // Habilitar red de Firebase
       await firebase.firestore().enableNetwork();
       console.log('Conexión activa con Firebase.');
 
